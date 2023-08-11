@@ -1,0 +1,80 @@
+package com.sparklead.evocharge
+
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.widget.ViewPager2
+import com.sparklead.evocharge.databinding.FragmentIntroBinding
+
+class IntroFragment : Fragment() {
+
+    private lateinit var binding: FragmentIntroBinding
+
+    private lateinit var onboardingAdapter: IntroViewPagerAdapter
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding = FragmentIntroBinding.inflate(inflater, container, false)
+        setOnboardingItem()
+        return binding.root
+    }
+
+    private fun setOnboardingItem() {
+
+        onboardingAdapter = IntroViewPagerAdapter(
+            listOf(
+                OnboardingItem(
+                    onboardingImage = R.drawable.intro_background1,
+                    title = "Welcome To EvoCharge",
+                    description = "Feeling confused about your Career selection try our Chatbot"
+                ),
+                OnboardingItem(
+                    onboardingImage = R.drawable.intro_background2,
+                    title = "Dexa Scan Models",
+                    description = "just ask your Career Doubt in live counsellor interaction"
+                ),
+                OnboardingItem(
+                    onboardingImage = R.drawable.intro_background3,
+                    title = "BMI Calculator",
+                    description = "Explore numerous career options available at on place."
+                ),
+                OnboardingItem(
+                    onboardingImage = R.drawable.intro_background4,
+                    title = "BMI Calculator",
+                    description = "Explore numerous career options available at on place."
+                )
+            )
+        )
+
+        val onboardingViewPager = binding.onBoardingViewPager
+        onboardingViewPager.adapter = onboardingAdapter
+        onboardingViewPager.registerOnPageChangeCallback(object :
+            ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                setCurrentIndicator(position)
+            }
+        })
+        (onboardingViewPager.getChildAt(0) as RecyclerView).overScrollMode =
+            RecyclerView.OVER_SCROLL_NEVER
+
+        binding.btnNext.setOnClickListener {
+            if (onboardingViewPager.currentItem + 1 < onboardingAdapter.itemCount) {
+                onboardingViewPager.currentItem += 1
+            } else {
+                Toast.makeText(requireContext(), "Yes", Toast.LENGTH_LONG).show()
+            }
+        }
+    }
+
+    private fun setCurrentIndicator(position: Int) {
+
+        binding.progressCircular.setProgress((((position + 1).toFloat()) / 4) * 100, true, 500L)
+    }
+}
