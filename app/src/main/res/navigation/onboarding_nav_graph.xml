@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.sparklead.evocharge.SplashFragment"
+        android:name="com.sparklead.evocharge.ui.fragments.SplashFragment"
         android:label="SplashFragment" >
         <action
             android:id="@+id/action_splashFragment_to_introFragment"
@@ -15,7 +15,16 @@
     </fragment>
     <fragment
         android:id="@+id/introFragment"
-        android:name="com.sparklead.evocharge.IntroFragment"
+        android:name="com.sparklead.evocharge.ui.fragments.IntroFragment"
         android:label="fragment_intro"
-        tools:layout="@layout/fragment_intro" />
+        tools:layout="@layout/fragment_intro" >
+        <action
+            android:id="@+id/action_introFragment_to_authenticationActivity"
+            app:destination="@id/authenticationActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/authenticationActivity"
+        android:name="com.sparklead.evocharge.ui.activities.AuthenticationActivity"
+        android:label="activity_authentication"
+        tools:layout="@layout/activity_authentication" />
 </navigation>

@@ -1,4 +1,4 @@
-package com.sparklead.evocharge
+package com.sparklead.evocharge.ui.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,8 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
+import com.sparklead.evocharge.ui.adapters.IntroViewPagerAdapter
+import com.sparklead.evocharge.models.OnboardingItem
+import com.sparklead.evocharge.R
 import com.sparklead.evocharge.databinding.FragmentIntroBinding
 
 class IntroFragment : Fragment() {
@@ -68,7 +72,7 @@ class IntroFragment : Fragment() {
             if (onboardingViewPager.currentItem + 1 < onboardingAdapter.itemCount) {
                 onboardingViewPager.currentItem += 1
             } else {
-                Toast.makeText(requireContext(), "Yes", Toast.LENGTH_LONG).show()
+                findNavController().navigate(R.id.action_introFragment_to_authenticationActivity)
             }
         }
     }

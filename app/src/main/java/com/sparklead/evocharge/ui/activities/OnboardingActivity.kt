@@ -1,7 +1,8 @@
-package com.sparklead.evocharge
+package com.sparklead.evocharge.ui.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.sparklead.evocharge.R
 import com.zackratos.ultimatebarx.ultimatebarx.java.UltimateBarX
 
 class OnboardingActivity : AppCompatActivity() {

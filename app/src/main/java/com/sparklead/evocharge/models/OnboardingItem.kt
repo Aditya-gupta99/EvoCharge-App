@@ -1,4 +1,4 @@
-package com.sparklead.evocharge
+package com.sparklead.evocharge.models
 
 data class OnboardingItem(
     val onboardingImage : Int,
