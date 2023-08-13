@@ -32,52 +32,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20sp"
                 android:fontFamily="@font/poppins_bold"
-                android:text="Create an Account"
+                android:text="Welome back"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="22sp" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/userFirstName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20sp"
-                android:layout_marginTop="20sp"
-                android:layout_marginEnd="20sp"
-                app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:startIconDrawable="@drawable/profile">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etFirstName"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/edittext_background"
-                    android:fontFamily="@font/poppins_light"
-                    android:hint="First Name" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/userLastName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20sp"
-                android:layout_marginTop="20sp"
-                android:layout_marginEnd="20sp"
-                app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:startIconDrawable="@drawable/profile">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etLastName"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/edittext_background"
-                    android:fontFamily="@font/poppins_light"
-                    android:hint="Last Name" />
-            </com.google.android.material.textfield.TextInputLayout>
 
 
             <com.google.android.material.textfield.TextInputLayout
@@ -123,13 +81,22 @@
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_light"
+                android:text="@string/forgot_password"
+                android:layout_marginTop="20sp"
+                android:textAlignment="center"
+                android:textSize="16sp" />
+
             <Button
                 android:id="@+id/btn_register"
                 style="@style/Widget.Material3.Button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30sp"
-                android:layout_marginTop="50sp"
+                android:layout_marginTop="80sp"
                 android:layout_marginEnd="30sp"
                 android:layout_marginBottom="30sp"
                 android:background="@drawable/button_gradiant_background"
@@ -137,8 +104,11 @@
                 android:focusable="true"
                 android:fontFamily="@font/poppins_medium"
                 android:padding="10sp"
-                android:text="Register"
+                android:text="Login"
                 android:textColor="@color/white"
+                app:icon="@drawable/ic_login"
+                app:iconTint="@color/white"
+                app:iconGravity = "textStart"
                 android:textSize="16sp"
                 app:backgroundTint="@null"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -198,19 +168,19 @@
                 <TextView
                     android:layout_width="0sp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"
+                    android:layout_weight="2.3"
                     android:fontFamily="@font/poppins_medium"
-                    android:text="Already have an account?"
+                    android:text="Don't have an account yet?"
                     android:textAlignment="textEnd"
                     android:textSize="18sp" />
 
                 <TextView
                     android:layout_width="0sp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10sp"
+                    android:layout_marginStart="5sp"
                     android:layout_weight="1"
                     android:fontFamily="@font/poppins_medium"
-                    android:text="Login"
+                    android:text="Register"
                     android:textAlignment="textStart"
                     android:textColor="@color/light_blue"
                     android:textSize="18sp" />

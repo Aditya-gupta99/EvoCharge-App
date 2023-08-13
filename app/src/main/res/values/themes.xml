@@ -8,4 +8,11 @@
     </style>
 
     <style name="Theme.EvoCharge" parent="Base.Theme.EvoCharge" />
+
+    <style name="Auth.Theme.EvoCharge" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/black</item>
+        <item name="colorOnPrimary">@color/purple</item>
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
 </resources>

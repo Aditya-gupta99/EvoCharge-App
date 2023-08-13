@@ -17,25 +17,27 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40sp"
-                android:fontFamily="@font/poppins_medium"
-                android:text="Het There,"
+                android:fontFamily="@font/poppins_bold"
+                android:text="Let's complete your profile"
                 android:textAlignment="center"
-                android:textSize="18sp" />
+                android:textColor="@color/black"
+                android:textSize="22sp" />
+
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
                 android:layout_marginBottom="20sp"
-                android:fontFamily="@font/poppins_bold"
-                android:text="Create an Account"
+                android:text="it will help us to know more about you!"
                 android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="22sp" />
+                android:textSize="16sp" />
+
+
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/userFirstName"
@@ -125,7 +127,7 @@
 
             <Button
                 android:id="@+id/btn_register"
-                style="@style/Widget.Material3.Button"
+                style="@style/Widget.Material3.Button.ElevatedButton.Icon"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30sp"
@@ -137,85 +139,16 @@
                 android:focusable="true"
                 android:fontFamily="@font/poppins_medium"
                 android:padding="10sp"
-                android:text="Register"
+                android:text="Next"
                 android:textColor="@color/white"
+                app:icon="@drawable/ic_navigate_next"
+                app:iconGravity = "textEnd"
+                app:iconTint="@color/white"
                 android:textSize="16sp"
                 app:backgroundTint="@null"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="40sp"
-                android:layout_marginEnd="40sp"
-                android:adjustViewBounds="true"
-                android:src="@drawable/or_icon" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/btn_google_login"
-                    style="@style/Widget.Material3.Button.IconButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="30sp"
-                    android:background="@drawable/square_button_background"
-                    android:padding="16sp"
-                    app:backgroundTint="@null"
-                    app:icon="@drawable/ic_google"
-                    app:iconTint="@null"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent" />
-
-                <Button
-                    android:id="@+id/btn_facebook_login"
-                    style="@style/Widget.Material3.Button.IconButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="30sp"
-                    android:background="@drawable/square_button_background"
-                    android:padding="16sp"
-                    app:backgroundTint="@null"
-                    app:icon="@drawable/ic_facebook"
-                    app:iconTint="@null"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="0sp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:fontFamily="@font/poppins_medium"
-                    android:text="Already have an account?"
-                    android:textAlignment="textEnd"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:layout_width="0sp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10sp"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/poppins_medium"
-                    android:text="Login"
-                    android:textAlignment="textStart"
-                    android:textColor="@color/light_blue"
-                    android:textSize="18sp" />
-
-            </LinearLayout>
 
         </LinearLayout>
 
