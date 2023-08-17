@@ -14,9 +14,12 @@
         android:theme="@style/Theme.EvoCharge"
         tools:targetApi="31">
         <activity
+            android:name=".ui.activities.DashboardActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.activities.AuthenticationActivity"
-            android:theme="@style/Auth.Theme.EvoCharge"
-            android:exported="true" >
+            android:exported="true"
+            android:theme="@style/Auth.Theme.EvoCharge">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,11 +29,13 @@
         <activity
             android:name=".ui.activities.OnboardingActivity"
             android:exported="false">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
     </application>
 

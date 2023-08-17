@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".ui.fragments.SignUpFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginBottom="200sp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_register">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40sp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="Welome, Aditya"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="22sp" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30sp"
+            android:layout_marginEnd="30sp"
+            android:layout_marginBottom="20sp"
+            android:fontFamily="@font/poppins_light"
+            android:text="You are all set now,let's find charging station with us "
+            android:textAlignment="center"
+            android:textSize="16sp" />
+
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_register"
+        style="@style/Widget.Material3.Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30sp"
+        android:layout_marginTop="80sp"
+        android:layout_marginEnd="30sp"
+        android:layout_marginBottom="30sp"
+        android:background="@drawable/button_gradiant_background"
+        android:clickable="true"
+        android:focusable="true"
+        android:fontFamily="@font/poppins_medium"
+        android:padding="10sp"
+        android:text="Go To Home"
+        android:textColor="@color/white"
+        app:iconGravity = "textStart"
+        android:textSize="16sp"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

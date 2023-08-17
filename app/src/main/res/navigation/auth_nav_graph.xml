@@ -22,5 +22,23 @@
     <fragment
         android:id="@+id/signInFragment"
         android:name="com.sparklead.evocharge.ui.fragments.SignInFragment"
-        android:label="SignInFragment" />
+        android:label="SignInFragment" >
+        <action
+            android:id="@+id/action_signInFragment_to_dashboardActivity"
+            app:destination="@id/dashboardActivity" />
+    </fragment>
+    <fragment
+        android:id="@+id/welcomeFragment"
+        android:name="com.sparklead.evocharge.ui.fragments.WelcomeFragment"
+        android:label="fragment_welcome"
+        tools:layout="@layout/fragment_welcome" >
+        <action
+            android:id="@+id/action_welcomeFragment_to_dashboardActivity"
+            app:destination="@id/dashboardActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/dashboardActivity"
+        android:name="com.sparklead.evocharge.ui.activities.DashboardActivity"
+        android:label="activity_dashboard"
+        tools:layout="@layout/activity_dashboard" />
 </navigation>

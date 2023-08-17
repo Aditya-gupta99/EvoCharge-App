@@ -6,10 +6,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/white"
-    tools:context=".ui.fragments.SignUpFragment">
+    tools:context=".ui.fragments.SignInFragment">
 
     <ScrollView
         android:layout_width="match_parent"
+        android:scrollbars="none"
         android:layout_height="match_parent">
 
         <LinearLayout
@@ -96,7 +97,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30sp"
-                android:layout_marginTop="80sp"
+                android:layout_marginTop="100sp"
                 android:layout_marginEnd="30sp"
                 android:layout_marginBottom="30sp"
                 android:background="@drawable/button_gradiant_background"

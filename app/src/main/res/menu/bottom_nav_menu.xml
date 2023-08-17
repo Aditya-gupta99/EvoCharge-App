@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/homeFragment"
+        android:checked="true"
+        android:icon="@drawable/map"
+        android:title="Home"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/chargingListFragment"
+        android:checked="true"
+        android:icon="@drawable/ic_navigate_next"
+        android:title="List"
+        app:showAsAction="always"/>
+
+</menu>

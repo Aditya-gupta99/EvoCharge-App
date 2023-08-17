@@ -1,0 +1,84 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cl_layout_container"
+    style="@style/ThemeOverlay.Material3.DayNight.SideSheetDialog"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    app:behavior_draggable = "true"
+    android:animateLayoutChanges="true"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_margin="8sp"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="8dp"
+            android:text="Notification"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textColor="@color/blue"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/btn_close"
+            android:layout_width="18sp"
+            android:layout_height="18sp"
+            android:background="@android:color/transparent"
+            android:src="@android:drawable/ic_menu_close_clear_cancel"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_title"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:id="@+id/ll_checklist"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:padding="12dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hello there i am using EvoCharge"
+            android:layout_margin="8sp"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="I m Aditya Gupta"
+            android:layout_margin="8sp"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8sp"
+            android:text="Dont worry this only sample"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8sp"
+            android:text="We will launch this app in few months"
+            android:textSize="16sp"/>
+    </LinearLayout>
+</LinearLayout>
