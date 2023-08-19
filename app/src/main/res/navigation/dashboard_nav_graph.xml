@@ -9,10 +9,23 @@
         android:id="@+id/homeFragment"
         android:name="com.sparklead.evocharge.ui.fragments.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_mapDetailsFragment"
+            app:destination="@id/mapDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/chargingListFragment"
         android:name="com.sparklead.evocharge.ui.fragments.ChargingListFragment"
         android:label="fragment_charging_list"
-        tools:layout="@layout/fragment_charging_list" />
+        tools:layout="@layout/fragment_charging_list" >
+        <action
+            android:id="@+id/action_chargingListFragment_to_mapDetailsFragment"
+            app:destination="@id/mapDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mapDetailsFragment"
+        android:name="com.sparklead.evocharge.ui.fragments.MapDetailsFragment"
+        android:label="fragment_map_details"
+        tools:layout="@layout/fragment_map_details" />
 </navigation>

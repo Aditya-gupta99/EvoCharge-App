@@ -14,5 +14,6 @@
         <item name="colorOnPrimary">@color/purple</item>
         <item name="android:statusBarColor">@color/white</item>
         <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowContentTransitions">true</item>
     </style>
 </resources>

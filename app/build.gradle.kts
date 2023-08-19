@@ -47,6 +47,7 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.0")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.0")
+    implementation("com.google.android.gms:play-services-location:21.0.1")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
@@ -54,6 +55,9 @@ dependencies {
     // ultimateBarX for full screen
     implementation("com.gitee.zackratos:UltimateBarX:0.7.1")
 
-    //
+    //circular progress bar
     implementation("com.github.guilhe:circular-progress-view:2.0.0")
+
+    // map dependency
+    implementation("com.google.android.gms:play-services-maps:18.1.0")
 }

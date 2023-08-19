@@ -4,60 +4,61 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.transition.TransitionInflater
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
 import androidx.core.app.ActivityCompat
-import androidx.navigation.fragment.FragmentNavigatorExtras
-import androidx.navigation.fragment.findNavController
+import androidx.fragment.app.Fragment
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener
 import com.google.android.gms.maps.MapsInitializer
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.sidesheet.SideSheetBehavior
-import com.google.android.material.sidesheet.SideSheetCallback
-import com.google.android.material.sidesheet.SideSheetDialog
-import com.google.android.material.transition.MaterialFade
-import com.google.android.material.transition.MaterialFadeThrough
 import com.sparklead.evocharge.R
-import com.sparklead.evocharge.databinding.FragmentHomeBinding
+import com.sparklead.evocharge.databinding.FragmentMapDetailsBinding
 import com.sparklead.evocharge.ui.utils.Constants
+import com.zackratos.ultimatebarx.ultimatebarx.java.UltimateBarX
 
-class HomeFragment : Fragment() ,OnMapReadyCallback,OnMarkerClickListener{
+class MapDetailsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
 
-    private var _binding : FragmentHomeBinding ? =null
-    private val binding
-        get() = _binding!!
+    private var _binding: FragmentMapDetailsBinding? = null
+    val binding get() = _binding!!
 
     private lateinit var mMap: GoogleMap
     private lateinit var lastLocation: Location
-    private lateinit var fusedLocationClient : FusedLocationProviderClient
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentHomeBinding.inflate(inflater,container,false)
+        _binding = FragmentMapDetailsBinding.inflate(inflater, container, false)
 
-        enterTransition = MaterialFadeThrough()
+        UltimateBarX.statusBar(requireActivity())
+            .transparent()
+            .light(true)
+            .apply()
+
+        val animation =
+            TransitionInflater.from(requireContext()).inflateTransition(android.R.transition.move)
+        sharedElementEnterTransition = animation
+        sharedElementReturnTransition = animation
+
+        val navBar = requireActivity().findViewById<BottomNavigationView>(R.id.bottom_navigation)
+        navBar.visibility = View.GONE
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.notificationIcon.setOnClickListener {
-            showSideSheet()
-        }
 
         // Map setup
         binding.mapView.onCreate(savedInstanceState)
@@ -65,38 +66,7 @@ class HomeFragment : Fragment() ,OnMapReadyCallback,OnMarkerClickListener{
         MapsInitializer.initialize(requireContext())
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
 
-        binding.mapView.getMapAsync {
-            it.setOnMapClickListener {
-                val extras = FragmentNavigatorExtras(binding.mapView to "map_large")
-                findNavController().navigate(R.id.action_homeFragment_to_mapDetailsFragment,null,null,extras)
-            }
-        }
-    }
 
-    private fun showSideSheet(){
-        val sideSheetDialog = SideSheetDialog(requireContext())
-
-        sideSheetDialog.behavior.addCallback(object : SideSheetCallback() {
-            override fun onStateChanged(sheet: View, newState: Int) {
-                if (newState == SideSheetBehavior.STATE_DRAGGING) {
-                    sideSheetDialog.behavior.state = SideSheetBehavior.STATE_EXPANDED
-                }
-            }
-            override fun onSlide(sheet: View, slideOffset: Float) {
-            }
-        })
-
-        val inflater = layoutInflater.inflate(R.layout.side_sheet_notification,null)
-        val btnClose = inflater.findViewById<ImageButton>(R.id.btn_close)
-
-        btnClose.setOnClickListener {
-            sideSheetDialog.dismiss()
-        }
-
-        sideSheetDialog.setCancelable(false)
-        sideSheetDialog.setCanceledOnTouchOutside(true)
-        sideSheetDialog.setContentView(inflater)
-        sideSheetDialog.show()
     }
 
     override fun onMapReady(map: GoogleMap) {
@@ -125,7 +95,7 @@ class HomeFragment : Fragment() ,OnMapReadyCallback,OnMarkerClickListener{
                 lastLocation = location
                 val currentLatLong = LatLng(location.latitude,location.longitude)
                 placeMarker(currentLatLong)
-                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLong,15f))
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLong,16f))
             }
         }
     }
@@ -137,10 +107,12 @@ class HomeFragment : Fragment() ,OnMapReadyCallback,OnMarkerClickListener{
 
     }
 
+    override fun onMarkerClick(p0: Marker): Boolean {
+        return true
+    }
+
     override fun onResume() {
         super.onResume()
-        val navBar = requireActivity().findViewById<BottomNavigationView>(R.id.bottom_navigation)
-        navBar.visibility = View.VISIBLE
         binding.mapView.onResume()
     }
 
@@ -157,10 +129,5 @@ class HomeFragment : Fragment() ,OnMapReadyCallback,OnMarkerClickListener{
     override fun onDestroy() {
         super.onDestroy()
         binding.mapView.onDestroy()
-    }
-
-    override fun onMarkerClick(marker: Marker): Boolean {
-        findNavController().navigate(R.id.action_homeFragment_to_mapDetailsFragment)
-        return true
     }
 }
