@@ -3,12 +3,15 @@ package com.sparklead.evocharge.ui.fragments
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.location.Location
+import android.net.Uri
 import android.os.Bundle
 import android.transition.TransitionInflater
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,6 +32,7 @@ import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.libraries.places.api.Places
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.sparklead.evocharge.R
 import com.sparklead.evocharge.databinding.FragmentMapDetailsBinding
 import com.sparklead.evocharge.ui.utils.Constants
@@ -41,6 +45,7 @@ class MapDetailsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerCli
     private lateinit var mMap: GoogleMap
     private lateinit var lastLocation: Location
     private lateinit var fusedLocationClient: FusedLocationProviderClient
+    private lateinit var markerLocation: LatLng
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,6 +53,7 @@ class MapDetailsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerCli
     ): View {
         _binding = FragmentMapDetailsBinding.inflate(inflater, container, false)
 
+        bottomSheetState()
 
         val animation =
             TransitionInflater.from(requireContext()).inflateTransition(android.R.transition.move)
@@ -71,7 +77,7 @@ class MapDetailsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerCli
         MapsInitializer.initialize(requireContext())
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
 
-        Places.initialize(requireContext(),"AIzaSyAUCICDqqPIkZnVq0vimeCYZqtYltXZ-AU")
+        Places.initialize(requireContext(), "AIzaSyAUCICDqqPIkZnVq0vimeCYZqtYltXZ-AU")
 
 
         binding.getCurrentLocation.setOnClickListener {
@@ -80,9 +86,16 @@ class MapDetailsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerCli
                 if (location != null) {
                     lastLocation = location
                     val currentLatLong = LatLng(location.latitude, location.longitude)
-                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLong, 16f))
+                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLong, 15f))
                 }
             }
+        }
+
+        binding.btnNavigate.setOnClickListener {
+            val uri = "google.navigation:q=${markerLocation.latitude},${markerLocation.longitude}"
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(uri))
+            intent.setPackage("com.google.android.apps.maps")
+            startActivity(intent)
         }
 
 
@@ -118,19 +131,39 @@ class MapDetailsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerCli
                 lastLocation = location
                 val currentLatLong = LatLng(location.latitude, location.longitude)
                 placeMarker(currentLatLong)
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLatLong, 16f))
+                markerLocation = currentLatLong
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLatLong, 15f))
             }
         }
     }
 
     private fun placeMarker(currentLatLong: LatLng) {
-        val markerOptions = MarkerOptions().position(currentLatLong).icon(getBitmapDescriptorFromVector(requireContext(), R.drawable.available_marker))
+        val markerOptions = MarkerOptions().position(LatLng(12.916236225721548, 77.57335327178811))
+            .icon(getBitmapDescriptorFromVector(requireContext(), R.drawable.available_marker))
         markerOptions.title("$currentLatLong")
         mMap.addMarker(markerOptions)
+        val result = FloatArray(1)
+        Location.distanceBetween(
+            currentLatLong.latitude,
+            currentLatLong.longitude,
+            12.916236225721548,
+            77.57335327178811,
+            result
+        )
+        Log.e(
+            "@@@@",
+            result[0].toString() + "    ${currentLatLong.latitude}" + "    ${currentLatLong.longitude}"
+        )
+        val markerOptions1 = MarkerOptions().position(LatLng(12.91527514112133, 77.56677907371741))
+            .icon(getBitmapDescriptorFromVector(requireContext(), R.drawable.available_marker))
+        mMap.addMarker(markerOptions1)
 
     }
 
-    override fun onMarkerClick(p0: Marker): Boolean {
+    override fun onMarkerClick(marker: Marker): Boolean {
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(marker.position, 15f))
+//        TODO update dialog with new charging station
+        markerLocation = marker.position
         return true
     }
 
@@ -154,7 +187,10 @@ class MapDetailsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerCli
         binding.mapView.onDestroy()
     }
 
-    private fun getBitmapDescriptorFromVector(context: Context, @DrawableRes vectorDrawableResId: Int): BitmapDescriptor {
+    private fun getBitmapDescriptorFromVector(
+        context: Context,
+        @DrawableRes vectorDrawableResId: Int
+    ): BitmapDescriptor {
         val vectorDrawable = ContextCompat.getDrawable(context, vectorDrawableResId)
         val bitmap = Bitmap.createBitmap(
             vectorDrawable!!.intrinsicWidth,
@@ -165,5 +201,22 @@ class MapDetailsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerCli
         vectorDrawable.setBounds(0, 0, canvas.width, canvas.height)
         vectorDrawable.draw(canvas)
         return BitmapDescriptorFactory.fromBitmap(bitmap)
+    }
+
+    private fun bottomSheetState() {
+        val bottomSheetBehavior = BottomSheetBehavior.from(binding.standardBottomSheet)
+        bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+        bottomSheetBehavior.peekHeight = 400
+        bottomSheetBehavior.isHideable = false
+
+        val bottomSheetCallback = object : BottomSheetBehavior.BottomSheetCallback() {
+
+            override fun onStateChanged(bottomSheet: View, newState: Int) {
+            }
+
+            override fun onSlide(bottomSheet: View, slideOffset: Float) {
+            }
+        }
+        bottomSheetBehavior.addBottomSheetCallback(bottomSheetCallback)
     }
 }
