@@ -19,10 +19,6 @@
         android:theme="@style/Theme.EvoCharge"
         tools:targetApi="31">
         <activity
-            android:name=".ui.activities.MapDetailsActivity"
-            android:exported="false"
-            android:theme="@style/Auth.Theme.EvoCharge"/>
-        <activity
             android:name=".ui.activities.DashboardActivity"
             android:exported="false" />
         <activity

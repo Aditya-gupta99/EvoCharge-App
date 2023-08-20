@@ -1,7 +1,10 @@
 package com.sparklead.evocharge.ui.fragments
 
 import android.Manifest
+import android.content.Context
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.Canvas
 import android.location.Location
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,7 +12,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import androidx.annotation.DrawableRes
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -19,6 +24,8 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener
 import com.google.android.gms.maps.MapsInitializer
 import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.model.BitmapDescriptor
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
@@ -101,8 +108,8 @@ class HomeFragment : Fragment() ,OnMapReadyCallback,OnMarkerClickListener{
 
     override fun onMapReady(map: GoogleMap) {
         mMap = map
-
-        mMap.uiSettings.isZoomControlsEnabled = true
+        mMap.uiSettings.isMyLocationButtonEnabled = false
+        mMap.uiSettings.isZoomControlsEnabled = false
         mMap.setOnMarkerClickListener(this)
         setUpMap()
     }
@@ -125,13 +132,13 @@ class HomeFragment : Fragment() ,OnMapReadyCallback,OnMarkerClickListener{
                 lastLocation = location
                 val currentLatLong = LatLng(location.latitude,location.longitude)
                 placeMarker(currentLatLong)
-                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLong,15f))
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLatLong,15f))
             }
         }
     }
 
     private fun placeMarker(currentLatLong: LatLng) {
-        val markerOptions = MarkerOptions().position(currentLatLong)
+        val markerOptions = MarkerOptions().position(currentLatLong).icon(getBitmapDescriptorFromVector(requireContext(), R.drawable.available_marker))
         markerOptions.title("$currentLatLong")
         mMap.addMarker(markerOptions)
 
@@ -162,5 +169,18 @@ class HomeFragment : Fragment() ,OnMapReadyCallback,OnMarkerClickListener{
     override fun onMarkerClick(marker: Marker): Boolean {
         findNavController().navigate(R.id.action_homeFragment_to_mapDetailsFragment)
         return true
+    }
+
+    private fun getBitmapDescriptorFromVector(context: Context, @DrawableRes vectorDrawableResId: Int): BitmapDescriptor {
+        val vectorDrawable = ContextCompat.getDrawable(context, vectorDrawableResId)
+        val bitmap = Bitmap.createBitmap(
+            vectorDrawable!!.intrinsicWidth,
+            vectorDrawable.intrinsicHeight,
+            Bitmap.Config.ARGB_8888
+        )
+        val canvas = Canvas(bitmap)
+        vectorDrawable.setBounds(0, 0, canvas.width, canvas.height)
+        vectorDrawable.draw(canvas)
+        return BitmapDescriptorFactory.fromBitmap(bitmap)
     }
 }
