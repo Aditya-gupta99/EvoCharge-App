@@ -11,6 +11,7 @@
         android:id="@+id/map_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="100sp"
         android:transitionName="map_large"
         app:layout_constraintBottom_toTopOf="@+id/standardBottomSheet"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,89 +23,188 @@
         android:id="@+id/get_current_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_anchorGravity="end|top"
         android:layout_gravity="top"
-        android:translationY="-20dp"
         android:layout_margin="20sp"
         android:src="@drawable/current_location"
-        app:layout_anchor="@id/standardBottomSheet" />
+        android:translationY="-20dp"
+        app:layout_anchor="@id/standardBottomSheet"
+        app:layout_anchorGravity="end|top" />
 
     <FrameLayout
         android:id="@+id/standardBottomSheet"
         style="@style/Widget.Material3.BottomSheet"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
-        <!-- Drag handle for accessibility -->
         <com.google.android.material.bottomsheet.BottomSheetDragHandleView
             android:id="@+id/drag_handle"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
 
-        <!-- Bottom Sheet contents -->
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20sp"
+                android:layout_marginTop="20sp"
+                android:layout_marginRight="20sp"
+                android:background="#C3EFC5"
+                android:fontFamily="@font/poppins_light"
+                android:padding="4sp"
+                android:text="Closest to you"
+                android:textColor="@color/quantum_googgreen"
+                android:textSize="12sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20sp"
+                    android:layout_marginRight="20sp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/poppins_light"
+                    android:text="Station Name, location"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:id="@+id/iconButton"
+                    style="?attr/materialIconButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20sp"
+                    app:icon="@drawable/baseline_bookmark_border_24"
+                    app:iconTint="@color/black" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20sp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/poppins_light"
+                    android:text="Currently available"
+                    android:textColor="@color/quantum_googgreen"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20sp"
+                    android:layout_marginEnd="30sp"
+                    android:fontFamily="@font/poppins_light"
+                    android:text="2.0km"
+                    android:textColor="@color/quantum_googgreen"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="20sp"
+                    android:layout_height="20sp"
+                    android:layout_marginStart="20sp"
+                    android:src="@drawable/ic_clock" />
+
+
+                <TextView
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20sp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/poppins_light"
+                    android:text="Open | 10:00am - 12pm"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14sp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="20sp"
+                    android:layout_height="20sp"
+                    android:layout_marginStart="20sp"
+                    android:src="@drawable/ic_location" />
+
+
+                <TextView
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20sp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/poppins_light"
+                    android:text="Complete Address"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14sp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="20sp"
+                    android:layout_height="20sp"
+                    android:layout_marginStart="20sp"
+                    android:src="@drawable/ic_charger" />
+
+
+                <TextView
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20sp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/poppins_light"
+                    android:text="3kW DC"
+                    android:textSize="16sp" />
+            </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="20sp"
-                android:text="Hi Its Aditya Gupta"
-                android:textAlignment="center"
+                android:layout_marginStart="20sp"
+                android:layout_marginTop="20sp"
+                android:fontFamily="@font/poppins_light"
+                android:text="@string/issue_with_station"
                 android:textColor="@color/blue"
-                android:textSize="20sp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="20sp"
-                android:text="Hi Its Aditya Gupta"
-                android:textAlignment="center"
-                android:textColor="@color/blue"
-                android:textSize="20sp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="20sp"
-                android:text="Hi Its Aditya Gupta"
-                android:textAlignment="center"
-                android:textColor="@color/blue"
-                android:textSize="20sp" />
-
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="20sp"
-                android:text="Hi Its Aditya Gupta"
-                android:textAlignment="center"
-                android:textColor="@color/blue"
-                android:textSize="20sp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="20sp"
-                android:text="Hi Its Aditya Gupta"
-                android:textAlignment="center"
-                android:textColor="@color/blue"
-                android:textSize="20sp" />
-
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="20sp"
-                android:text="Hi Its Aditya Gupta"
-                android:textAlignment="center"
-                android:textColor="@color/blue"
-                android:textSize="20sp" />
+                android:textSize="14sp" />
 
             <Button
                 android:id="@+id/btn_navigate"
@@ -112,7 +212,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30sp"
-                android:layout_marginTop="100sp"
+                android:layout_marginTop="40sp"
                 android:layout_marginEnd="30sp"
                 android:layout_marginBottom="30sp"
                 android:background="@drawable/button_gradiant_background"
@@ -122,11 +222,11 @@
                 android:padding="10sp"
                 android:text="Navigate"
                 android:textColor="@color/white"
-                app:icon="@drawable/ic_navigate_next"
-                app:iconTint="@color/white"
-                app:iconGravity = "textEnd"
                 android:textSize="16sp"
                 app:backgroundTint="@null"
+                app:icon="@drawable/ic_navigate_next"
+                app:iconGravity="textEnd"
+                app:iconTint="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />

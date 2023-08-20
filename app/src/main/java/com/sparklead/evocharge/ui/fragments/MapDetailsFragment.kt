@@ -86,7 +86,7 @@ class MapDetailsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerCli
                 if (location != null) {
                     lastLocation = location
                     val currentLatLong = LatLng(location.latitude, location.longitude)
-                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLong, 15f))
+                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLong, 14f))
                 }
             }
         }
@@ -132,7 +132,7 @@ class MapDetailsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerCli
                 val currentLatLong = LatLng(location.latitude, location.longitude)
                 placeMarker(currentLatLong)
                 markerLocation = currentLatLong
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLatLong, 15f))
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLatLong, 14f))
             }
         }
     }
@@ -206,7 +206,7 @@ class MapDetailsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerCli
     private fun bottomSheetState() {
         val bottomSheetBehavior = BottomSheetBehavior.from(binding.standardBottomSheet)
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
-        bottomSheetBehavior.peekHeight = 400
+        bottomSheetBehavior.peekHeight = 360
         bottomSheetBehavior.isHideable = false
 
         val bottomSheetCallback = object : BottomSheetBehavior.BottomSheetCallback() {
