@@ -1,17 +1,14 @@
 package com.sparklead.evocharge.ui.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.shape.MaterialShapeDrawable
-import com.sparklead.evocharge.R
 import com.sparklead.evocharge.databinding.ActivityDashboardBinding
 
 class DashboardActivity : AppCompatActivity() {
 
-    private var _binding : ActivityDashboardBinding ? = null
-
+    private var _binding: ActivityDashboardBinding? = null
     private val binding
         get() = _binding!!
 
@@ -25,5 +22,10 @@ class DashboardActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         binding.bottomNavigation.setupWithNavController(binding.fragmentContainerView.findNavController())
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

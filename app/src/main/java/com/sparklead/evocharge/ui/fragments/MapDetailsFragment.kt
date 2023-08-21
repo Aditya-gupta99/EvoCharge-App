@@ -185,6 +185,7 @@ class MapDetailsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerCli
     override fun onDestroy() {
         super.onDestroy()
         binding.mapView.onDestroy()
+        _binding = null
     }
 
     private fun getBitmapDescriptorFromVector(

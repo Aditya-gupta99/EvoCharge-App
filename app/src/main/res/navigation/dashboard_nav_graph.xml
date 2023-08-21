@@ -28,4 +28,9 @@
         android:name="com.sparklead.evocharge.ui.fragments.MapDetailsFragment"
         android:label="fragment_map_details"
         tools:layout="@layout/fragment_map_details" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.sparklead.evocharge.ui.fragments.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
 </navigation>
