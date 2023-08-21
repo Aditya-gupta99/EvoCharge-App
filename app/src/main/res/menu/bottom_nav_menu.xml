@@ -16,4 +16,11 @@
         android:title="List"
         app:showAsAction="always"/>
 
+    <item
+        android:id="@+id/profileFragment"
+        android:checked="true"
+        android:icon="@drawable/ic_profile"
+        android:title="Profile"
+        app:showAsAction="always"/>
+
 </menu>

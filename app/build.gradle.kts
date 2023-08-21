@@ -62,4 +62,7 @@ dependencies {
     implementation("com.google.android.gms:play-services-maps:18.1.0")
 
     implementation("com.google.android.libraries.places:places:3.1.0")
+
+    //circular image
+    implementation("de.hdodenhof:circleimageview:3.1.0")
 }
