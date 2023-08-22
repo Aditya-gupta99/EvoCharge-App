@@ -2,19 +2,22 @@ package com.sparklead.evocharge.ui.fragments
 
 import android.Manifest
 import android.content.Context
+import android.content.DialogInterface
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.location.Location
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.DrawableRes
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -33,27 +36,29 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.sidesheet.SideSheetBehavior
 import com.google.android.material.sidesheet.SideSheetCallback
 import com.google.android.material.sidesheet.SideSheetDialog
-import com.google.android.material.transition.MaterialFade
 import com.google.android.material.transition.MaterialFadeThrough
 import com.sparklead.evocharge.R
 import com.sparklead.evocharge.databinding.FragmentHomeBinding
 import com.sparklead.evocharge.ui.utils.Constants
 
-class HomeFragment : Fragment() ,OnMapReadyCallback,OnMarkerClickListener{
+class HomeFragment : Fragment(), OnMapReadyCallback, OnMarkerClickListener {
 
-    private var _binding : FragmentHomeBinding ? =null
+    private var _binding: FragmentHomeBinding? = null
     private val binding
         get() = _binding!!
 
     private lateinit var mMap: GoogleMap
     private lateinit var lastLocation: Location
-    private lateinit var fusedLocationClient : FusedLocationProviderClient
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentHomeBinding.inflate(inflater,container,false)
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+
+        // TODO we will move this after login page
+        checkAllPermission()
 
         enterTransition = MaterialFadeThrough()
         return binding.root
@@ -75,12 +80,21 @@ class HomeFragment : Fragment() ,OnMapReadyCallback,OnMarkerClickListener{
         binding.mapView.getMapAsync {
             it.setOnMapClickListener {
                 val extras = FragmentNavigatorExtras(binding.mapView to "map_large")
-                findNavController().navigate(R.id.action_homeFragment_to_mapDetailsFragment,null,null,extras)
+                findNavController().navigate(
+                    R.id.action_homeFragment_to_mapDetailsFragment,
+                    null,
+                    null,
+                    extras
+                )
             }
+        }
+
+        binding.fabScanQr.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_scanQrFragment)
         }
     }
 
-    private fun showSideSheet(){
+    private fun showSideSheet() {
         val sideSheetDialog = SideSheetDialog(requireContext())
 
         sideSheetDialog.behavior.addCallback(object : SideSheetCallback() {
@@ -89,11 +103,12 @@ class HomeFragment : Fragment() ,OnMapReadyCallback,OnMarkerClickListener{
                     sideSheetDialog.behavior.state = SideSheetBehavior.STATE_EXPANDED
                 }
             }
+
             override fun onSlide(sheet: View, slideOffset: Float) {
             }
         })
 
-        val inflater = layoutInflater.inflate(R.layout.side_sheet_notification,null)
+        val inflater = layoutInflater.inflate(R.layout.side_sheet_notification, null)
         val btnClose = inflater.findViewById<ImageButton>(R.id.btn_close)
 
         btnClose.setOnClickListener {
@@ -118,27 +133,31 @@ class HomeFragment : Fragment() ,OnMapReadyCallback,OnMarkerClickListener{
         if (ActivityCompat.checkSelfPermission(
                 requireContext(),
                 Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED){
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
 
-            ActivityCompat.requestPermissions(requireActivity(), arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION),
-                Constants.LOCATION_REQUEST_CODE)
+            ActivityCompat.requestPermissions(
+                requireActivity(), arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                Constants.LOCATION_REQUEST_CODE
+            )
 
             return
         }
         mMap.isMyLocationEnabled = true
         fusedLocationClient.lastLocation.addOnSuccessListener(requireActivity()) { location ->
 
-            if (location != null){
+            if (location != null) {
                 lastLocation = location
-                val currentLatLong = LatLng(location.latitude,location.longitude)
+                val currentLatLong = LatLng(location.latitude, location.longitude)
                 placeMarker(currentLatLong)
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLatLong,15f))
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLatLong, 15f))
             }
         }
     }
 
     private fun placeMarker(currentLatLong: LatLng) {
-        val markerOptions = MarkerOptions().position(currentLatLong).icon(getBitmapDescriptorFromVector(requireContext(), R.drawable.available_marker))
+        val markerOptions = MarkerOptions().position(currentLatLong)
+            .icon(getBitmapDescriptorFromVector(requireContext(), R.drawable.available_marker))
         markerOptions.title("$currentLatLong")
         mMap.addMarker(markerOptions)
 
@@ -171,7 +190,10 @@ class HomeFragment : Fragment() ,OnMapReadyCallback,OnMarkerClickListener{
         return true
     }
 
-    private fun getBitmapDescriptorFromVector(context: Context, @DrawableRes vectorDrawableResId: Int): BitmapDescriptor {
+    private fun getBitmapDescriptorFromVector(
+        context: Context,
+        @DrawableRes vectorDrawableResId: Int
+    ): BitmapDescriptor {
         val vectorDrawable = ContextCompat.getDrawable(context, vectorDrawableResId)
         val bitmap = Bitmap.createBitmap(
             vectorDrawable!!.intrinsicWidth,
@@ -182,5 +204,33 @@ class HomeFragment : Fragment() ,OnMapReadyCallback,OnMarkerClickListener{
         vectorDrawable.setBounds(0, 0, canvas.width, canvas.height)
         vectorDrawable.draw(canvas)
         return BitmapDescriptorFactory.fromBitmap(bitmap)
+    }
+
+    private fun checkAllPermission() {
+        val permissions =
+            arrayOf(Manifest.permission.CAMERA, Manifest.permission.ACCESS_FINE_LOCATION)
+        permissionLauncher.launch(permissions)
+    }
+
+    private val permissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestMultiplePermissions()
+    ) { result ->
+
+        var areAllGranted = true
+        for (isGranted in result.values) {
+            areAllGranted = areAllGranted && isGranted
+        }
+
+        if (areAllGranted) {
+
+        } else {
+            Toast.makeText(requireContext(), "Permission denied...", Toast.LENGTH_SHORT).show()
+            Constants.warningPermissionDialog(requireContext()) { _: DialogInterface, which: Int ->
+                when (which) {
+                    DialogInterface.BUTTON_POSITIVE ->
+                        Constants.appSettingOpen(requireContext())
+                }
+            }
+        }
     }
 }

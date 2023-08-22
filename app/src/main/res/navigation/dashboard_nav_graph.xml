@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_homeFragment_to_mapDetailsFragment"
             app:destination="@id/mapDetailsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_scanQrFragment"
+            app:destination="@id/scanQrFragment" />
     </fragment>
     <fragment
         android:id="@+id/chargingListFragment"
@@ -42,4 +45,9 @@
             android:name="chargingStation"
             app:argType="com.sparklead.evocharge.models.ChargingStation" />
     </fragment>
+    <fragment
+        android:id="@+id/scanQrFragment"
+        android:name="com.sparklead.evocharge.ui.fragments.ScanQrFragment"
+        android:label="fragment_scan_qr"
+        tools:layout="@layout/fragment_scan_qr" />
 </navigation>

@@ -72,4 +72,11 @@ dependencies {
     //glide library
     implementation("com.github.bumptech.glide:glide:4.15.1")
     annotationProcessor("com.github.bumptech.glide:compiler:4.13.0")
+
+    implementation("com.facebook.shimmer:shimmer:0.1.0@aar")
+
+    implementation("io.github.krupen:fabulousfilter:0.0.6")
+
+    //qr scanner
+    implementation("com.github.yuriy-budiyev:code-scanner:2.3.2")
 }
