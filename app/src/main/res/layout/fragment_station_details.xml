@@ -10,7 +10,7 @@
     <ImageView
         android:layout_width="40sp"
         android:layout_height="40sp"
-        android:layout_margin="30sp"
+        android:layout_margin="40sp"
         android:elevation="10sp"
         android:src="@drawable/back_pressed_icon"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,6 +27,208 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0sp"
+        android:fillViewport="true"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/carousel_rv_ads">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30sp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:layout_width="0sp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20sp"
+                        android:layout_marginRight="20sp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_light"
+                        android:text="Station Name, location"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+                    <Button
+                        android:id="@+id/iconButton"
+                        style="?attr/materialIconButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="20sp"
+                        app:icon="@drawable/baseline_bookmark_border_24"
+                        app:iconTint="@color/black" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:layout_width="0sp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20sp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_light"
+                        android:text="Currently available"
+                        android:textColor="@color/quantum_googgreen"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20sp"
+                        android:layout_marginEnd="30sp"
+                        android:fontFamily="@font/poppins_light"
+                        android:text="2.0km"
+                        android:textColor="@color/quantum_googgreen"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="20sp"
+                        android:layout_height="20sp"
+                        android:layout_marginStart="20sp"
+                        android:src="@drawable/ic_clock" />
+
+
+                    <TextView
+                        android:layout_width="0sp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20sp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_light"
+                        android:text="Open | 10:00am - 12pm"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14sp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="20sp"
+                        android:layout_height="20sp"
+                        android:layout_marginStart="20sp"
+                        android:src="@drawable/ic_location" />
+
+
+                    <TextView
+                        android:layout_width="0sp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20sp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_light"
+                        android:text="Complete Address"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14sp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="20sp"
+                        android:layout_height="20sp"
+                        android:layout_marginStart="20sp"
+                        android:src="@drawable/ic_charger" />
+
+
+                    <TextView
+                        android:layout_width="0sp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20sp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_light"
+                        android:text="3kW DC"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20sp"
+                    android:layout_marginTop="20sp"
+                    android:fontFamily="@font/poppins_light"
+                    android:text="@string/issue_with_station"
+                    android:textColor="@color/blue"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+
+            <Button
+                android:id="@+id/btn_navigate"
+                style="@style/Widget.Material3.Button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30sp"
+                android:layout_marginTop="40sp"
+                android:layout_marginEnd="30sp"
+                android:layout_marginBottom="30sp"
+                android:background="@drawable/button_gradiant_background"
+                android:clickable="true"
+                android:focusable="true"
+                android:fontFamily="@font/poppins_medium"
+                android:padding="10sp"
+                android:text="Navigate"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:backgroundTint="@null"
+                app:icon="@drawable/ic_navigate_next"
+                app:iconGravity="textEnd"
+                app:iconTint="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </ScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
