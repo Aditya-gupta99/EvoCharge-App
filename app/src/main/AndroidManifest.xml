@@ -20,24 +20,26 @@
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:usesCleartextTraffic="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.EvoCharge"
         tools:targetApi="31">
         <activity
             android:name=".ui.activities.DashboardActivity"
-            android:exported="true"
+            android:exported="false"
             android:theme="@style/Dashboard.Theme.EvoCharge">
+        </activity>
+        <activity
+            android:name=".ui.activities.AuthenticationActivity"
+            android:exported="true"
+            android:theme="@style/Auth.Theme.EvoCharge">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ui.activities.AuthenticationActivity"
-            android:exported="false"
-            android:theme="@style/Auth.Theme.EvoCharge"/>
         <activity
             android:name=".ui.activities.OnboardingActivity"
             android:exported="false"/>
