@@ -12,4 +12,6 @@
 
     <color name="baby_blue">#d7e2fc</color>
     <color name="powder_blue">#f4f7ff</color>
+    <color name="colorSnackBarError">#ED9B95</color>
+    <color name="colorSnackBarSuccess">#CAECA3</color>
 </resources>

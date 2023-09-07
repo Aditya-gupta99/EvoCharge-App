@@ -25,7 +25,6 @@ object ApplicationModule {
     @Singleton
     fun provideHttpClient(): HttpClient {
         return HttpClient(Android) {
-            install(Logging)
             install(WebSockets)
             install(JsonFeature) {
                 serializer = KotlinxSerializer(Json {
