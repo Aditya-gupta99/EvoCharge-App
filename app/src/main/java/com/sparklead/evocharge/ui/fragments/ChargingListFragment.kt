@@ -12,7 +12,9 @@ import com.sparklead.evocharge.R
 import com.sparklead.evocharge.databinding.FragmentChargingListBinding
 import com.sparklead.evocharge.models.ChargingStation
 import com.sparklead.evocharge.ui.adapters.StationListAdapter
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ChargingListFragment : Fragment() {
 
     private var _binding: FragmentChargingListBinding? = null

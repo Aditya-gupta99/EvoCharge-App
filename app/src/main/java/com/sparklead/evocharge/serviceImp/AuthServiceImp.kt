@@ -10,8 +10,9 @@ import io.ktor.client.request.post
 import io.ktor.client.request.url
 import io.ktor.http.ContentType
 import io.ktor.http.contentType
+import javax.inject.Inject
 
-class AuthServiceImp(private val client : HttpClient) : AuthService {
+class AuthServiceImp(private val client: HttpClient) : AuthService {
 
     override suspend fun signUpUser(signUpRequest: SignUpRequest): SignUpResponse {
         return try {
@@ -20,8 +21,8 @@ class AuthServiceImp(private val client : HttpClient) : AuthService {
                 contentType(ContentType.Application.Json)
                 body = signUpRequest
             }
-        } catch (e : Exception) {
-            Log.e("error in SignUp",e.message.toString())
+        } catch (e: Exception) {
+            Log.e("error in SignUp", e.message.toString())
             SignUpResponse("")
         }
     }

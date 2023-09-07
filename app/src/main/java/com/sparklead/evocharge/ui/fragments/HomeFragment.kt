@@ -40,7 +40,9 @@ import com.google.android.material.transition.MaterialFadeThrough
 import com.sparklead.evocharge.R
 import com.sparklead.evocharge.databinding.FragmentHomeBinding
 import com.sparklead.evocharge.ui.utils.Constants
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomeFragment : Fragment(), OnMapReadyCallback, OnMarkerClickListener {
 
     private var _binding: FragmentHomeBinding? = null

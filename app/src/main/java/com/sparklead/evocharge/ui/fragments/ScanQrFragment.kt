@@ -3,7 +3,6 @@ package com.sparklead.evocharge.ui.fragments
 import android.Manifest
 import android.content.DialogInterface
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,7 +19,9 @@ import com.sparklead.evocharge.R
 import com.sparklead.evocharge.databinding.FragmentScanQrBinding
 import com.sparklead.evocharge.ui.utils.Constants.appSettingOpen
 import com.sparklead.evocharge.ui.utils.Constants.warningPermissionDialog
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ScanQrFragment : Fragment() {
 
     private var _binding: FragmentScanQrBinding? = null
@@ -83,18 +84,18 @@ class ScanQrFragment : Fragment() {
         super.onPause()
     }
 
-    private fun permissionCheck(){
+    private fun permissionCheck() {
         val permission = Manifest.permission.CAMERA
         permissionLauncher.launch(permission)
     }
 
     private val permissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestPermission()
-    ){ isGranted ->
-        if(isGranted){
-            Toast.makeText(requireContext(),"Permission Granted...",Toast.LENGTH_LONG).show()
+    ) { isGranted ->
+        if (isGranted) {
+            Toast.makeText(requireContext(), "Permission Granted...", Toast.LENGTH_LONG).show()
         } else {
-            Toast.makeText(requireContext(),"Permission denied...",Toast.LENGTH_LONG).show()
+            Toast.makeText(requireContext(), "Permission denied...", Toast.LENGTH_LONG).show()
             warningPermissionDialog(requireContext()) { _: DialogInterface, which: Int ->
                 when (which) {
                     DialogInterface.BUTTON_POSITIVE ->

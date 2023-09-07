@@ -4,6 +4,8 @@ plugins {
     id("kotlin-parcelize")
     id("androidx.navigation.safeargs.kotlin")
     id("org.jetbrains.kotlin.plugin.serialization")
+    kotlin("kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -30,11 +32,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
 
     buildFeatures {
@@ -81,11 +83,15 @@ dependencies {
     //qr scanner
     implementation("com.github.yuriy-budiyev:code-scanner:2.3.2")
 
+    // Ktor dependencies
     implementation("io.ktor:ktor-client-core:1.6.3")
     implementation("io.ktor:ktor-client-android:1.6.3")
     implementation("io.ktor:ktor-client-serialization:1.6.3")
     implementation("io.ktor:ktor-client-logging:1.6.3")
     implementation("ch.qos.logback:logback-classic:1.2.3")
-
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.0")
+
+    // Hilt dependencies
+    implementation("com.google.dagger:hilt-android:2.44")
+    kapt("com.google.dagger:hilt-android-compiler:2.44")
 }

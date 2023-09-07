@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.sparklead.evocharge.databinding.FragmentCompleteProfileBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class CompleteProfileFragment : Fragment() {
 
     private lateinit var binding: FragmentCompleteProfileBinding

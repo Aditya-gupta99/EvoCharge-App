@@ -36,7 +36,9 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.sparklead.evocharge.R
 import com.sparklead.evocharge.databinding.FragmentMapDetailsBinding
 import com.sparklead.evocharge.ui.utils.Constants
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MapDetailsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
 
     private var _binding: FragmentMapDetailsBinding? = null
