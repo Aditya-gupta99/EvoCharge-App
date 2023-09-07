@@ -15,25 +15,4 @@ interface AuthService {
 
     suspend fun signUpUser(signUpRequest: SignUpRequest) : SignUpResponse
 
-//    companion object {
-//
-//        private val json = Json {
-//            encodeDefaults = true
-//            ignoreUnknownKeys = true
-//            isLenient = true
-//        }
-//        fun create() : AuthService {
-//            return AuthServiceImp(
-//                client = HttpClient(Android) {
-//                    install(Logging) {
-//                        level = LogLevel.ALL
-//                    }
-//                    install(JsonFeature){
-//                        serializer = KotlinxSerializer(json)
-//                    }
-//                }
-//            )
-//        }
-//    }
-
 }
