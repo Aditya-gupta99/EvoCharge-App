@@ -9,8 +9,6 @@ import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.core.widget.addTextChangedListener
 import com.sparklead.evocharge.databinding.FragmentSignUpBinding
 import com.sparklead.evocharge.models.SignUpRequest
 import com.sparklead.evocharge.service.AuthService
@@ -30,38 +28,12 @@ class SignUpFragment : BaseFragment() {
     @Inject
     lateinit var service: AuthService
 
-    private var passwordValidate = false
-
-    private val passwordWatcher = object :TextWatcher {
+    private val passwordWatcher = object : TextWatcher {
         override fun afterTextChanged(p0: Editable?) {}
         override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
         override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            if(p0 != null){
+            if (p0 != null) {
                 passwordValidation(p0.toString())
-//                if (!p0.matches(Regex(".*[0-9].*"))) {
-//                    binding.userPassword.error = "Password should contain at least 1 digit"
-//                    passwordValidate = false
-//                }
-//                else if (!p0.matches(Regex(".*[a-z].*"))) {
-//                    binding.userPassword.error = "Password should contain at least 1 lower case letter"
-//                    passwordValidate = false
-//                }
-//                else if (!p0.matches(Regex(".*[A-Z].*"))) {
-//                    binding.userPassword.error = "Password should contain at least 1 upper case letter"
-//                    passwordValidate = false
-//                }
-//                else if (!p0.matches(Regex(".*[a-zA-Z].*"))) {
-//                    binding.userPassword.error = "Password should contain a letter"
-//                    passwordValidate = false
-//                }
-//                else if (!p0.matches( Regex(".{8,}"))) {
-//                    binding.userPassword.error = "Password should contain 8 characters"
-//                    passwordValidate = false
-//                }
-//                else {
-//                    passwordValidate = true
-//                    binding.userPassword.error = null
-//                }
             }
         }
     }
@@ -86,7 +58,9 @@ class SignUpFragment : BaseFragment() {
     }
 
     private fun signUpUser() {
-        if (validateUserDetails() && passwordValidation(binding.etPassword.text.toString().trim { it <= ' ' })) {
+        if (validateUserDetails() && passwordValidation(
+                binding.etPassword.text.toString().trim { it <= ' ' })
+        ) {
             showLoadingDialog()
 
 
@@ -127,7 +101,8 @@ class SignUpFragment : BaseFragment() {
                 false
             }
 
-            !Patterns.EMAIL_ADDRESS.matcher(binding.etEmailName.text.toString().trim { it <= ' ' }).matches() -> {
+            !Patterns.EMAIL_ADDRESS.matcher(binding.etEmailName.text.toString().trim { it <= ' ' })
+                .matches() -> {
                 binding.userFirstName.error = null
                 binding.userLastName.error = null
                 binding.userEmail.error = "Please enter correct email"
@@ -153,34 +128,23 @@ class SignUpFragment : BaseFragment() {
         }
     }
 
-    private fun passwordValidation(p0 : String) : Boolean{
+    private fun passwordValidation(p0: String): Boolean {
         if (!p0.matches(Regex(".*[0-9].*"))) {
             binding.userPassword.error = "Password should contain at least 1 digit"
-//            passwordValidate = false
             return false
-        }
-        else if (!p0.matches(Regex(".*[a-z].*"))) {
+        } else if (!p0.matches(Regex(".*[a-z].*"))) {
             binding.userPassword.error = "Password should contain at least 1 lower case letter"
-//            passwordValidate = false
             return false
-        }
-        else if (!p0.matches(Regex(".*[A-Z].*"))) {
+        } else if (!p0.matches(Regex(".*[A-Z].*"))) {
             binding.userPassword.error = "Password should contain at least 1 upper case letter"
-            passwordValidate = false
             return false
-        }
-        else if (!p0.matches(Regex(".*[a-zA-Z].*"))) {
+        } else if (!p0.matches(Regex(".*[a-zA-Z].*"))) {
             binding.userPassword.error = "Password should contain a letter"
-            passwordValidate = false
             return false
-        }
-        else if (!p0.matches( Regex(".{8,}"))) {
+        } else if (!p0.matches(Regex(".{8,}"))) {
             binding.userPassword.error = "Password should contain 8 characters"
-            passwordValidate = false
             return false
-        }
-        else {
-            passwordValidate = true
+        } else {
             binding.userPassword.error = null
             return true
         }
