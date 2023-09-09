@@ -93,7 +93,11 @@ dependencies {
 
     // Hilt dependencies
     implementation("com.google.dagger:hilt-android:2.44")
-    kapt("com.google.dagger:hilt-android-compiler:2.44")
+    kapt("com.google.dagger:hilt-android-compiler:2.47")
 
-    implementation("com.airbnb.android:lottie:3.5.0")
+    // lottie dependency
+    implementation("com.airbnb.android:lottie:5.2.0")
+
+    // coroutine dependency
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
 }

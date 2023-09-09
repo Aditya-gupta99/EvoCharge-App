@@ -4,18 +4,20 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextUtils
 import android.text.TextWatcher
-import android.util.Log
 import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.sparklead.evocharge.databinding.FragmentSignUpBinding
-import com.sparklead.evocharge.models.SignUpRequest
 import com.sparklead.evocharge.service.AuthService
 import com.sparklead.evocharge.ui.base.BaseFragment
+import com.sparklead.evocharge.ui.states.SignUpUiState
+import com.sparklead.evocharge.ui.viewmodels.SignUpViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -28,12 +30,14 @@ class SignUpFragment : BaseFragment() {
     @Inject
     lateinit var service: AuthService
 
+    private lateinit var viewModel: SignUpViewModel
+
     private val passwordWatcher = object : TextWatcher {
         override fun afterTextChanged(p0: Editable?) {}
         override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
         override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             if (p0 != null) {
-                passwordValidation(p0.toString())
+                passwordValidation(p0.toString().trim { it <= ' ' })
             }
         }
     }
@@ -43,7 +47,7 @@ class SignUpFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentSignUpBinding.inflate(inflater, container, false)
-
+        viewModel = ViewModelProvider(this)[SignUpViewModel::class.java]
         return binding.root
     }
 
@@ -55,29 +59,38 @@ class SignUpFragment : BaseFragment() {
         }
 
         binding.etPassword.addTextChangedListener(passwordWatcher)
+
+        lifecycleScope.launch {
+            viewModel.signUpUiState.collect{
+                when(it){
+                    is SignUpUiState.Error -> {
+                        hideLoading()
+                        Toast.makeText(requireContext(),it.message,Toast.LENGTH_LONG).show()
+                    }
+                    is SignUpUiState.Loading -> {
+                        showLoadingDialog()
+                    }
+                    is SignUpUiState.Success -> {
+                        hideLoading()
+                        Toast.makeText(requireContext(),it.message,Toast.LENGTH_LONG).show()
+                    }
+                    is SignUpUiState.Empty -> {
+
+                    }
+                }
+            }
+        }
     }
 
     private fun signUpUser() {
         if (validateUserDetails() && passwordValidation(
                 binding.etPassword.text.toString().trim { it <= ' ' })
         ) {
-            showLoadingDialog()
 
-
-            CoroutineScope(Dispatchers.IO).launch {
-                Log.d(
-                    "@@@",
-                    service.signUpUser(
-                        SignUpRequest(
-                            binding.etFirstName.text.toString().trim { it <= ' ' },
-                            binding.etLastName.text.toString().trim { it <= ' ' },
-                            binding.etEmailName.text.toString().trim { it <= ' ' },
-                            binding.etPassword.text.toString().trim { it <= ' ' }
-                        )
-                    ).toString()
-                )
-                hideLoading()
-            }
+            viewModel.signUpUser(binding.etFirstName.text.toString().trim { it <= ' ' },
+                binding.etLastName.text.toString().trim { it <= ' ' },
+                binding.etEmailName.text.toString().trim { it <= ' ' },
+                binding.etPassword.text.toString().trim { it <= ' ' })
         }
     }
 
