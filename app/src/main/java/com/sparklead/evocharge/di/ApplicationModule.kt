@@ -1,7 +1,9 @@
 package com.sparklead.evocharge.di
 
 import com.sparklead.evocharge.service.AuthService
+import com.sparklead.evocharge.service.UserService
 import com.sparklead.evocharge.serviceImp.AuthServiceImp
+import com.sparklead.evocharge.serviceImp.UserServiceImp
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -46,4 +48,7 @@ object ApplicationModule {
     @Singleton
     fun provideAuthService(client: HttpClient): AuthService = AuthServiceImp(client)
 
+    @Provides
+    @Singleton
+    fun providesUserService(client: HttpClient): UserService = UserServiceImp(client)
 }

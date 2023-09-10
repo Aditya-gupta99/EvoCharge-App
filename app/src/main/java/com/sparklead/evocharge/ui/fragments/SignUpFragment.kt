@@ -11,6 +11,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import com.sparklead.evocharge.R
 import com.sparklead.evocharge.databinding.FragmentSignUpBinding
 import com.sparklead.evocharge.service.AuthService
 import com.sparklead.evocharge.ui.base.BaseFragment
@@ -72,7 +74,7 @@ class SignUpFragment : BaseFragment() {
                     }
                     is SignUpUiState.Success -> {
                         hideLoading()
-                        Toast.makeText(requireContext(),it.message,Toast.LENGTH_LONG).show()
+                        onSuccessfulSignup(it.message)
                     }
                     is SignUpUiState.Empty -> {
 
@@ -161,6 +163,11 @@ class SignUpFragment : BaseFragment() {
             binding.userPassword.error = null
             return true
         }
+    }
+
+    private fun onSuccessfulSignup(message : String) {
+        Toast.makeText(requireContext(),message,Toast.LENGTH_LONG).show()
+        findNavController().navigate(R.id.action_signUpFragment_to_completeProfileFragment)
     }
 
     override fun onDestroyView() {
