@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/white"
+    android:orientation="vertical"
     tools:context=".ui.fragments.SignUpFragment">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -31,16 +32,16 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_medium"
                 android:layout_marginBottom="20sp"
+                android:fontFamily="@font/poppins_medium"
                 android:text="it will help us to know more about you!"
                 android:textAlignment="center"
                 android:textSize="16sp" />
 
 
-
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/userFirstName"
+                android:id="@+id/brandName"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20sp"
@@ -51,17 +52,21 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:startIconDrawable="@drawable/profile">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etFirstName"
+                <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                    android:id="@+id/etBrandName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/edittext_background"
                     android:fontFamily="@font/poppins_light"
-                    android:hint="First Name" />
+                    android:hint="Brand"
+                    android:inputType="none"
+                    android:padding="16sp"
+                    android:textSize="16sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/userLastName"
+                android:id="@+id/modelName"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20sp"
@@ -72,66 +77,26 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:startIconDrawable="@drawable/profile">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etLastName"
+                <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                    android:id="@+id/etModelName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/edittext_background"
                     android:fontFamily="@font/poppins_light"
-                    android:hint="Last Name" />
+                    android:hint="Model"
+                    android:inputType="none"
+                    android:padding="16sp"
+                    android:textSize="16sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/userEmail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20sp"
-                android:layout_marginTop="20sp"
-                android:layout_marginEnd="20sp"
-                app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:startIconDrawable="@drawable/ic_email">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etEmailName"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/edittext_background"
-                    android:fontFamily="@font/poppins_light"
-                    android:hint="Email" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/userPassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20sp"
-                android:layout_marginTop="20sp"
-                android:layout_marginEnd="20sp"
-                app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:startIconDrawable="@drawable/ic_password">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etPassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/edittext_background"
-                    android:fontFamily="@font/poppins_light"
-                    android:hint="Password"
-                    android:inputType="textPassword" />
-            </com.google.android.material.textfield.TextInputLayout>
 
             <Button
-                android:id="@+id/btn_register"
+                android:id="@+id/btn_next"
                 style="@style/Widget.Material3.Button.ElevatedButton.Icon"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30sp"
-                android:layout_marginTop="50sp"
+                android:layout_marginTop="80sp"
                 android:layout_marginEnd="30sp"
                 android:layout_marginBottom="30sp"
                 android:background="@drawable/button_gradiant_background"
@@ -141,11 +106,11 @@
                 android:padding="10sp"
                 android:text="Next"
                 android:textColor="@color/white"
-                app:icon="@drawable/ic_navigate_next"
-                app:iconGravity = "textEnd"
-                app:iconTint="@color/white"
                 android:textSize="16sp"
                 app:backgroundTint="@null"
+                app:icon="@drawable/ic_navigate_next"
+                app:iconGravity="textEnd"
+                app:iconTint="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />

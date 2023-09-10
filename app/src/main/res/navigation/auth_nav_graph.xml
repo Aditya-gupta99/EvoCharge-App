@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/auth_nav_graph"
-    app:startDestination="@id/signUpFragment">
+    app:startDestination="@id/completeProfileFragment">
 
     <fragment
         android:id="@+id/signUpFragment"
@@ -18,7 +18,11 @@
         android:id="@+id/completeProfileFragment"
         android:name="com.sparklead.evocharge.ui.fragments.CompleteProfileFragment"
         android:label="fragment_complete_profile"
-        tools:layout="@layout/fragment_complete_profile" />
+        tools:layout="@layout/fragment_complete_profile" >
+        <action
+            android:id="@+id/action_completeProfileFragment_to_welcomeFragment"
+            app:destination="@id/welcomeFragment" />
+    </fragment>
     <fragment
         android:id="@+id/signInFragment"
         android:name="com.sparklead.evocharge.ui.fragments.SignInFragment"
