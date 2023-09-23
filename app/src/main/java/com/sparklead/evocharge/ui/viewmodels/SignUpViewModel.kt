@@ -27,7 +27,6 @@ class SignUpViewModel @Inject constructor(private val repository: SignUpReposito
                 Log.e("error",it.message.toString())
             }.collect {
                 _signUpUiState.value = SignUpUiState.Success(it.toString())
-                Log.e("error",it.toString())
             }
         }
     }
