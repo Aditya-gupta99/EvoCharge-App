@@ -5,6 +5,6 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class SignUpResponse(
 
-    val response : String
+    val userId : String
 
 )
