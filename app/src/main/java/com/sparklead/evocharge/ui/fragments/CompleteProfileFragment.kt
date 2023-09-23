@@ -2,6 +2,7 @@ package com.sparklead.evocharge.ui.fragments
 
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,16 +16,25 @@ import com.sparklead.evocharge.databinding.FragmentCompleteProfileBinding
 import com.sparklead.evocharge.models.User
 import com.sparklead.evocharge.ui.base.BaseFragment
 import com.sparklead.evocharge.ui.states.CompleteProfileUiState
+import com.sparklead.evocharge.ui.utils.Constants
+import com.sparklead.evocharge.ui.utils.PrefManager
 import com.sparklead.evocharge.ui.viewmodels.CompleteProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.firstOrNull
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class CompleteProfileFragment : BaseFragment() {
 
     private lateinit var binding: FragmentCompleteProfileBinding
     private lateinit var viewModel: CompleteProfileViewModel
+    @Inject
+    lateinit var prefManager: PrefManager
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -74,6 +84,11 @@ class CompleteProfileFragment : BaseFragment() {
                     brand = binding.etBrandName.text.toString().trim { it <= ' ' }
                     model = binding.etModelName.text.toString().trim { it <= ' ' }
                 })
+                lifecycleScope.launch(Dispatchers.IO) {
+                    prefManager.readStringValue(Constants.AUTH_STATUS).collect {
+                        Log.e("@@@",it)
+                    }
+                }
             }
         }
     }

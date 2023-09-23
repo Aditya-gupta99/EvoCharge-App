@@ -17,8 +17,11 @@ import com.sparklead.evocharge.databinding.FragmentSignUpBinding
 import com.sparklead.evocharge.service.AuthService
 import com.sparklead.evocharge.ui.base.BaseFragment
 import com.sparklead.evocharge.ui.states.SignUpUiState
+import com.sparklead.evocharge.ui.utils.Constants
+import com.sparklead.evocharge.ui.utils.PrefManager
 import com.sparklead.evocharge.ui.viewmodels.SignUpViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -28,6 +31,9 @@ class SignUpFragment : BaseFragment() {
 
     private var _binding: FragmentSignUpBinding? = null
     private val binding get() = _binding!!
+
+    @Inject
+    lateinit var prefManager: PrefManager
 
     @Inject
     lateinit var service: AuthService
@@ -165,8 +171,11 @@ class SignUpFragment : BaseFragment() {
         }
     }
 
-    private fun onSuccessfulSignup(message : String) {
-        Toast.makeText(requireContext(),message,Toast.LENGTH_LONG).show()
+    private fun onSuccessfulSignup(userId : String) {
+        lifecycleScope.launch(Dispatchers.IO) {
+            prefManager.saveStringValue(Constants.AUTH_STATUS,"signup")
+            prefManager.saveStringValue(Constants.USER_ID,userId)
+        }
         findNavController().navigate(R.id.action_signUpFragment_to_completeProfileFragment)
     }
 

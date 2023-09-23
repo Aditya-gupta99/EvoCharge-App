@@ -11,6 +11,8 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 object Constants {
 
     const val LOCATION_REQUEST_CODE = 1
+    const val AUTH_STATUS = "auth_status"
+    const val USER_ID = "user_id"
 
     fun appSettingOpen(context: Context){
         Toast.makeText(
