@@ -33,17 +33,18 @@
         </activity>
         <activity
             android:name=".ui.activities.AuthenticationActivity"
-            android:exported="true"
+            android:exported="false"
             android:theme="@style/Auth.Theme.EvoCharge">
+        </activity>
+        <activity
+            android:name=".ui.activities.OnboardingActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ui.activities.OnboardingActivity"
-            android:exported="false"/>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

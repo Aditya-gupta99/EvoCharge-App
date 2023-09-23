@@ -173,7 +173,7 @@ class SignUpFragment : BaseFragment() {
 
     private fun onSuccessfulSignup(userId : String) {
         lifecycleScope.launch(Dispatchers.IO) {
-            prefManager.saveStringValue(Constants.AUTH_STATUS,"signup")
+            prefManager.saveStringValue(Constants.AUTH_STATUS,Constants.SIGNUP)
             prefManager.saveStringValue(Constants.USER_ID,userId)
         }
         findNavController().navigate(R.id.action_signUpFragment_to_completeProfileFragment)

@@ -26,6 +26,7 @@
         android:focusable="true"
         android:fontFamily="@font/poppins_medium"
         android:text="Get Started"
+        android:visibility="gone"
         android:textColor="@color/white"
         android:textSize="16sp"
         app:backgroundTint="@null"

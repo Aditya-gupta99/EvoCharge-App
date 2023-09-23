@@ -33,8 +33,11 @@ class CompleteProfileFragment : BaseFragment() {
 
     private lateinit var binding: FragmentCompleteProfileBinding
     private lateinit var viewModel: CompleteProfileViewModel
+
     @Inject
     lateinit var prefManager: PrefManager
+
+    private lateinit var userId : String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,7 +54,11 @@ class CompleteProfileFragment : BaseFragment() {
         binding.etModelName.setSimpleItems(atherList.toTypedArray())
 
 
-
+        lifecycleScope.launch(Dispatchers.IO) {
+            prefManager.readStringValue(Constants.USER_ID).collect {
+                userId = it
+            }
+        }
 
         return binding.root
     }
@@ -80,15 +87,10 @@ class CompleteProfileFragment : BaseFragment() {
 
         binding.btnNext.setOnClickListener {
             if (validateInput()) {
-                viewModel.updateUser("64ef5f915fa6ee67aa0c08c6", User().apply {
+                viewModel.updateUser(userId, User().apply {
                     brand = binding.etBrandName.text.toString().trim { it <= ' ' }
                     model = binding.etModelName.text.toString().trim { it <= ' ' }
                 })
-                lifecycleScope.launch(Dispatchers.IO) {
-                    prefManager.readStringValue(Constants.AUTH_STATUS).collect {
-                        Log.e("@@@",it)
-                    }
-                }
             }
         }
     }

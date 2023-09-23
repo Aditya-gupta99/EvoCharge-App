@@ -12,6 +12,9 @@
         <action
             android:id="@+id/action_splashFragment_to_introFragment"
             app:destination="@id/introFragment" />
+        <action
+            android:id="@+id/action_splashFragment_to_authenticationActivity"
+            app:destination="@id/authenticationActivity" />
     </fragment>
     <fragment
         android:id="@+id/introFragment"
