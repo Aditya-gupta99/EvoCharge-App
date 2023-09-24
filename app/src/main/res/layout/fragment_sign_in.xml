@@ -48,6 +48,7 @@
                 android:layout_marginEnd="20sp"
                 app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:errorEnabled="true"
                 app:layout_constraintStart_toStartOf="parent"
                 app:startIconDrawable="@drawable/ic_email">
 
@@ -65,10 +66,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20sp"
-                android:layout_marginTop="20sp"
+                android:layout_marginTop="6sp"
+                app:errorEnabled="true"
                 android:layout_marginEnd="20sp"
                 app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:passwordToggleEnabled="true"
                 app:layout_constraintStart_toStartOf="parent"
                 app:startIconDrawable="@drawable/ic_password">
 

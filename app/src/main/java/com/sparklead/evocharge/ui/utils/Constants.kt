@@ -13,6 +13,7 @@ object Constants {
     const val LOCATION_REQUEST_CODE = 1
     const val AUTH_STATUS = "auth_status"
     const val USER_ID = "user_id"
+    const val USER = "user"
     const val SIGNUP = "signup"
     const val COMPLETE_PROFILE = "complete_profile"
 

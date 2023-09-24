@@ -1,6 +1,8 @@
 package com.sparklead.evocharge.serviceImp
 
 import android.util.Log
+import com.sparklead.evocharge.models.SignInRequest
+import com.sparklead.evocharge.models.SignInResponse
 import com.sparklead.evocharge.models.SignUpRequest
 import com.sparklead.evocharge.models.SignUpResponse
 import com.sparklead.evocharge.remote.HttpRoutes
@@ -23,6 +25,20 @@ class AuthServiceImp(private val client: HttpClient) : AuthService {
 
         } catch (e: Exception) {
             Log.e("error in SignUp", e.message.toString())
+            throw e
+        }
+    }
+
+    override suspend fun signInUser(signInRequest: SignInRequest): SignInResponse {
+        return try {
+            client.post {
+                url(HttpRoutes.SIGNIN)
+                contentType(ContentType.Application.Json)
+                body = signInRequest
+            }
+
+        } catch (e: Exception) {
+            Log.e("error in SignIn", e.message.toString())
             throw e
         }
     }
