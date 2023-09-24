@@ -4,6 +4,8 @@ import com.sparklead.evocharge.service.AuthService
 import com.sparklead.evocharge.service.UserService
 import com.sparklead.evocharge.ui.repositories.CompleteProfileRepository
 import com.sparklead.evocharge.ui.repositories.CompleteProfileRepositoryImp
+import com.sparklead.evocharge.ui.repositories.SignInRepository
+import com.sparklead.evocharge.ui.repositories.SignInRepositoryImp
 import com.sparklead.evocharge.ui.repositories.SignUpRepository
 import com.sparklead.evocharge.ui.repositories.SignUpRepositoryImp
 import dagger.Module
@@ -22,4 +24,8 @@ object RepositoryModule {
     @Provides
     fun providesCompleteProfileRepository(service: UserService): CompleteProfileRepository =
         CompleteProfileRepositoryImp(service)
+
+    @Provides
+    fun providesSignInRepository(service: AuthService): SignInRepository =
+        SignInRepositoryImp(service)
 }

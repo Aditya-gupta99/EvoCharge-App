@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/auth_nav_graph"
-    app:startDestination="@id/signUpFragment">
+    app:startDestination="@id/signInFragment">
 
     <fragment
         android:id="@+id/signUpFragment"
@@ -28,8 +28,8 @@
         android:name="com.sparklead.evocharge.ui.fragments.SignInFragment"
         android:label="SignInFragment" >
         <action
-            android:id="@+id/action_signInFragment_to_dashboardActivity"
-            app:destination="@id/dashboardActivity" />
+            android:id="@+id/action_signInFragment_to_welcomeFragment"
+            app:destination="@id/welcomeFragment" />
     </fragment>
     <fragment
         android:id="@+id/welcomeFragment"

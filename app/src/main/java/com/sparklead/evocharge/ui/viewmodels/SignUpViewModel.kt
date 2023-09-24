@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.sparklead.evocharge.ui.repositories.SignUpRepository
 import com.sparklead.evocharge.ui.states.SignUpUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
@@ -18,13 +19,13 @@ class SignUpViewModel @Inject constructor(private val repository: SignUpReposito
     private val _signUpUiState = MutableStateFlow<SignUpUiState>(SignUpUiState.Empty)
     val signUpUiState: StateFlow<SignUpUiState> = _signUpUiState
 
-
     fun signUpUser(firstname: String, lastName: String, email: String, password: String) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             _signUpUiState.value = SignUpUiState.Loading
-            repository.signUser(firstname, lastName, email, password).catch {
-                _signUpUiState.value = SignUpUiState.Error(it.message.toString())
-                Log.e("error",it.message.toString())
+            repository.signUser(firstname, lastName, email, password)
+                .catch {
+                    _signUpUiState.value = SignUpUiState.Error(it.message.toString())
+                    Log.e("error",it.message.toString())
             }.collect {
                 _signUpUiState.value = SignUpUiState.Success(it.toString())
             }

@@ -8,6 +8,8 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
+import com.google.gson.Gson
+import com.sparklead.evocharge.models.User
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
@@ -22,6 +24,7 @@ class PrefManager @Inject constructor(@ApplicationContext context: Context) {
 
     private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "EvoCharge")
     private val dataStore = context.dataStore
+    private val gson = Gson()
 
     suspend fun saveBooleanValue(key: String, value: Boolean) {
         val dataStoreKey = booleanPreferencesKey(key)
@@ -68,6 +71,30 @@ class PrefManager @Inject constructor(@ApplicationContext context: Context) {
             }
             .map { preferences ->
                 preferences[dataStoreKey] ?: ""
+            }
+    }
+
+    suspend fun saveUser(user: User) {
+        val dataStoreKey = stringPreferencesKey(Constants.USER)
+        dataStore.edit { preferences ->
+            preferences[dataStoreKey] = gson.toJson(user)
+        }
+    }
+
+    suspend fun getSaveUser() : Flow<User>{
+        val dataStoreKey = stringPreferencesKey(Constants.USER)
+        return dataStore.data
+            .catch {
+                when (it) {
+                    is IOException -> {
+                        emit(emptyPreferences())
+                    }
+
+                    else -> throw it
+                }
+            }
+            .map { preferences ->
+                gson.fromJson(preferences[dataStoreKey],User::class.java) ?: User()
             }
     }
 }
