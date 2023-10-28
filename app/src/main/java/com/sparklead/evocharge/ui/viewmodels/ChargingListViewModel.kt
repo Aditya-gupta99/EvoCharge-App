@@ -17,11 +17,10 @@ class ChargingListViewModel @Inject constructor(private val repository: Charging
     ViewModel() {
 
     private val _chargingUiState =
-        MutableStateFlow<ChargingStationUiState>(ChargingStationUiState.Empty)
+        MutableStateFlow<ChargingStationUiState>(ChargingStationUiState.Loading)
     val chargingUiState: StateFlow<ChargingStationUiState> = _chargingUiState
 
     fun getChargingList() {
-        _chargingUiState.value = ChargingStationUiState.Loading
         viewModelScope.launch(Dispatchers.IO) {
             repository.getChargingStationList()
                 .catch {

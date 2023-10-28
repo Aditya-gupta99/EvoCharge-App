@@ -35,23 +35,23 @@ class IntroFragment : Fragment() {
         onboardingAdapter = IntroViewPagerAdapter(
             listOf(
                 OnboardingItem(
-                    onboardingImage = R.drawable.intro_background1,
+                    onboardingImage = R.drawable.intro_one,
                     title = "Welcome To EvoCharge",
                     description = "Feeling confused about your Career selection try our Chatbot"
                 ),
                 OnboardingItem(
-                    onboardingImage = R.drawable.intro_background2,
+                    onboardingImage = R.drawable.intro_two,
                     title = "Dexa Scan Models",
                     description = "just ask your Career Doubt in live counsellor interaction"
                 ),
                 OnboardingItem(
-                    onboardingImage = R.drawable.intro_background3,
-                    title = "BMI Calculator",
+                    onboardingImage = R.drawable.intro_three,
+                    title = "Scan Qr and Pay Online",
                     description = "Explore numerous career options available at on place."
                 ),
                 OnboardingItem(
-                    onboardingImage = R.drawable.intro_background4,
-                    title = "BMI Calculator",
+                    onboardingImage = R.drawable.intro_last,
+                    title = "Google direction support",
                     description = "Explore numerous career options available at on place."
                 )
             )
