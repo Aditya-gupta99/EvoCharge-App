@@ -11,6 +11,7 @@ import com.google.android.material.carousel.CarouselLayoutManager
 import com.google.android.material.carousel.HeroCarouselStrategy
 import com.sparklead.evocharge.R
 import com.sparklead.evocharge.databinding.FragmentStationDetailsBinding
+import com.sparklead.evocharge.models.ChargingStation
 import com.sparklead.evocharge.ui.adapters.CarouselAdapter
 import com.sparklead.evocharge.ui.utils.CarouselItem
 import dagger.hilt.android.AndroidEntryPoint
@@ -33,7 +34,27 @@ class StationDetailsFragment : Fragment() {
         val navBar = requireActivity().findViewById<BottomNavigationView>(R.id.bottom_navigation)
         navBar.visibility = View.GONE
 
-        val chargingStation = args.chargingStation
+        val chargingStationDetails = args.chargingStation
+
+        setupUI(chargingStationDetails)
+        setUpCarousel(chargingStationDetails)
+
+        return binding.root
+    }
+
+    private fun setupUI(details: ChargingStation) {
+
+        binding.tvStationNameLocation.text = details.name
+        binding.tvLocation.text = details.location
+        binding.tvAvailableStatus.text = if (details.available) "Currently available" else "Unavailable"
+        binding.tvDist.text = details.distance + " Km"
+        binding.statusTime.text = if(details.available) "Open | ${details.openingTime} - ${details.closingTime}" else "Closed | ${details.openingTime} - ${details.closingTime}"
+        binding.tvCompleteAddress.text = details.completeAddress
+        binding.tvChargeType.text = details.chargeType + " DC"
+
+    }
+
+    private fun setUpCarousel(details: ChargingStation) {
 
         val multiBrowseCenteredCarouselLayoutManager = CarouselLayoutManager(HeroCarouselStrategy())
         binding.carouselRvAds.layoutManager = multiBrowseCenteredCarouselLayoutManager
@@ -48,20 +69,13 @@ class StationDetailsFragment : Fragment() {
                 }
             }, R.layout.item_corosuel_station_image
         )
-
-        val cor: MutableList<CarouselItem> = mutableListOf()
-        cor.add(CarouselItem("https://i.postimg.cc/13sK3Yrz/Component-1-4.png", R.string.app_name))
-        cor.add(
-            CarouselItem(
-                "https://firebasestorage.googleapis.com/v0/b/vepaso-75c35.appspot.com/o/Component%202%20(3).png?alt=media&token=2be17462-832c-4992-984d-10e64b57114f",
-                R.string.app_name
-            )
-        )
-
+        val carouselItem : MutableList<CarouselItem> = mutableListOf()
+        for(item in details.images) {
+            carouselItem.add(CarouselItem(item))
+        }
         binding.carouselRvAds.adapter = adapter
-        adapter.submitList(cor)
+        adapter.submitList(carouselItem)
 
-        return binding.root
     }
 
     override fun onDestroy() {

@@ -1,8 +1,12 @@
 package com.sparklead.evocharge.ui.adapters
 
+import android.content.res.Resources
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.sparklead.evocharge.R
 import com.sparklead.evocharge.databinding.ItemChargingStationBinding
 import com.sparklead.evocharge.models.ChargingStation
 
@@ -37,9 +41,11 @@ class StationListAdapter(private val list: List<ChargingStation>) :
                 binding.tvLocation.text = this.location
                 binding.tvAvailableStatus.text =
                     if (this.available) "Currently available" else "Unavailable"
+                if(!this.available) binding.tvAvailableStatus.setTextColor(Color.RED)
                 binding.card.setOnClickListener {
                     onItemClick?.invoke(this)
                 }
+                binding.tvDist.text = this.distance + " Km"
             }
         }
     }

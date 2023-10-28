@@ -1,40 +1,130 @@
 package com.sparklead.evocharge.ui.fragments
 
+import android.annotation.SuppressLint
+import android.location.Location
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.model.LatLng
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.sparklead.evocharge.R
 import com.sparklead.evocharge.databinding.FragmentChargingListBinding
 import com.sparklead.evocharge.models.ChargingStation
+import com.sparklead.evocharge.models.ChargingStationResponse
 import com.sparklead.evocharge.ui.adapters.StationListAdapter
+import com.sparklead.evocharge.ui.base.BaseFragment
+import com.sparklead.evocharge.ui.states.ChargingStationUiState
+import com.sparklead.evocharge.ui.viewmodels.ChargingListViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 @AndroidEntryPoint
-class ChargingListFragment : Fragment() {
+class ChargingListFragment : BaseFragment() {
 
     private var _binding: FragmentChargingListBinding? = null
     private val binding
         get() = _binding!!
 
+    private lateinit var viewModel : ChargingListViewModel
+    private lateinit var adapter : StationListAdapter
+
+    private lateinit var currentTime : String
+    private lateinit var timeFormat : DateFormat
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
+    private lateinit var lastLocation : LatLng
+
+    @SuppressLint("MissingPermission")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentChargingListBinding.inflate(inflater, container, false)
+        viewModel = ViewModelProvider(this)[ChargingListViewModel::class.java]
+        viewModel.getChargingList()
 
-        val stationList = mutableListOf(
-            ChargingStation("Aditya Gupta", "ks Layout", true),
-            ChargingStation("New Center", "Bangalore", true),
-            ChargingStation("Coffee Park", "ks Layout", false),
-            ChargingStation("Meghanas", "hore", true)
-        )
+        timeFormat = SimpleDateFormat("hh:mm aaa", Locale.US)
+        currentTime = timeFormat.format(Date())
 
-        val adapter = StationListAdapter(stationList)
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
+        fusedLocationClient.lastLocation.addOnSuccessListener(requireActivity()) { location ->
+
+            if (location != null) {
+                lastLocation = LatLng(location.latitude, location.longitude)
+            }
+        }
+
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        lifecycleScope.launch {
+            viewModel.chargingUiState.collect{
+                when(it) {
+                    is ChargingStationUiState.Empty -> {}
+                    is ChargingStationUiState.Error -> {
+                        hideLoading()
+                        error(it.message)
+                    }
+                    is ChargingStationUiState.Loading -> {
+                        showLoadingDialog()
+                    }
+                    is ChargingStationUiState.Success -> {
+                        hideLoading()
+                        showList(it.list)
+                    }
+                }
+            }
+        }
+
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val navBar = requireActivity().findViewById<BottomNavigationView>(R.id.bottom_navigation)
+        navBar.visibility = View.VISIBLE
+    }
+
+    private fun error(message : String) {
+        Toast.makeText(requireActivity(),message,Toast.LENGTH_LONG).show()
+    }
+
+    private fun showList(list : ArrayList<ChargingStationResponse>) {
+
+        val chargingList : ArrayList<ChargingStation> = ArrayList()
+        for(it in list) {
+
+            val temp = ChargingStation(
+                name = it.stationName,
+                location = it.location,
+                available = checkAvailability(it.openingTime,it.closingTime),
+                distance = calculateDistance(it.latitude,it.longitude),
+                openingTime = it.openingTime,
+                closingTime = it.closingTime,
+                chargeType = it.chargingType,
+                completeAddress = it.completeAddress,
+                images = it.images
+            )
+            chargingList.add(temp)
+        }
+
+        adapter = StationListAdapter(chargingList)
         binding.rvChargingStation.adapter = adapter
         binding.rvChargingStation.layoutManager = LinearLayoutManager(requireContext())
 
@@ -43,13 +133,27 @@ class ChargingListFragment : Fragment() {
                 ChargingListFragmentDirections.actionChargingListFragmentToStationDetailsFragment(it)
             findNavController().navigate(action)
         }
-
-        return binding.root
     }
 
-    override fun onResume() {
-        super.onResume()
-        val navBar = requireActivity().findViewById<BottomNavigationView>(R.id.bottom_navigation)
-        navBar.visibility = View.VISIBLE
+    private fun calculateDistance(latitude: Double, longitude: Double): String {
+
+        val result = FloatArray(1)
+        Location.distanceBetween(
+            lastLocation.latitude,
+            lastLocation.longitude,
+            latitude,
+            longitude,
+            result
+        )
+
+        return "%.1f".format(result[0]/1000)
+    }
+
+    private fun checkAvailability(openingTime: String, closingTime: String): Boolean {
+        val open = timeFormat.parse(openingTime)
+        val close = timeFormat.parse(closingTime)
+        val current = timeFormat.parse(currentTime)
+
+        return current in open..close
     }
 }

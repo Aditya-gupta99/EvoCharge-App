@@ -26,25 +26,14 @@ internal class CarouselItemViewHolder(itemView: View, listener: CarouselAdapter.
         Glide
             .with(imageView.context)
             .asBitmap()
-            .load(item.getDrawableRes())
+            .load(item.getImageUrl())
             .into(object : CustomTarget<Bitmap>(){
                 override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
                     Log.e("SET DRAWABLE BITMAP", resource.toString())
                     imageView.setImageBitmap(resource)
                 }
                 override fun onLoadCleared(placeholder: Drawable?) {
-                    // this is called when imageView is cleared on lifecycle call or for
-                    // some other reason.
-                    // if you are referencing the bitmap somewhere else too other than this imageView
-                    // clear it here as you can no longer have the bitmap
                 }
             })
-        imageView.contentDescription = imageView.resources.getString(item.getContentDescRes())
-//        itemView.setOnClickListener {
-//            listener.onItemClicked(
-//                item,
-//                bindingAdapterPosition
-//            )
-//        }
     }
 }
