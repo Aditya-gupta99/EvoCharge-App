@@ -70,6 +70,7 @@
                     android:textSize="14sp" />
 
                 <TextView
+                    android:id="@+id/tv_dist"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_light"

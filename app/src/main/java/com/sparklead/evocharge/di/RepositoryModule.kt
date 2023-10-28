@@ -1,7 +1,10 @@
 package com.sparklead.evocharge.di
 
 import com.sparklead.evocharge.service.AuthService
+import com.sparklead.evocharge.service.ChargingStationService
 import com.sparklead.evocharge.service.UserService
+import com.sparklead.evocharge.ui.repositories.ChargingStationRepository
+import com.sparklead.evocharge.ui.repositories.ChargingStationRepositoryImp
 import com.sparklead.evocharge.ui.repositories.CompleteProfileRepository
 import com.sparklead.evocharge.ui.repositories.CompleteProfileRepositoryImp
 import com.sparklead.evocharge.ui.repositories.SignInRepository
@@ -28,4 +31,8 @@ object RepositoryModule {
     @Provides
     fun providesSignInRepository(service: AuthService): SignInRepository =
         SignInRepositoryImp(service)
+
+    @Provides
+    fun providesChargingStationRepository(service: ChargingStationService): ChargingStationRepository =
+        ChargingStationRepositoryImp(service)
 }
