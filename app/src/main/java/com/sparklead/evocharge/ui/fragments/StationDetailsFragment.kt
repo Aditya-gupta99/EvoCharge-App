@@ -1,5 +1,6 @@
 package com.sparklead.evocharge.ui.fragments
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -46,9 +47,12 @@ class StationDetailsFragment : Fragment() {
 
         binding.tvStationNameLocation.text = details.name
         binding.tvLocation.text = details.location
-        binding.tvAvailableStatus.text = if (details.available) "Currently available" else "Unavailable"
+        binding.tvAvailableStatus.text =
+            if (details.available) "Currently available" else "Unavailable"
+        if (!details.available) binding.tvAvailableStatus.setTextColor(Color.RED)
         binding.tvDist.text = details.distance + " Km"
-        binding.statusTime.text = if(details.available) "Open | ${details.openingTime} - ${details.closingTime}" else "Closed | ${details.openingTime} - ${details.closingTime}"
+        binding.statusTime.text =
+            if (details.available) "Open | ${details.openingTime} - ${details.closingTime}" else "Closed | ${details.openingTime} - ${details.closingTime}"
         binding.tvCompleteAddress.text = details.completeAddress
         binding.tvChargeType.text = details.chargeType + " DC"
 
@@ -69,8 +73,8 @@ class StationDetailsFragment : Fragment() {
                 }
             }, R.layout.item_corosuel_station_image
         )
-        val carouselItem : MutableList<CarouselItem> = mutableListOf()
-        for(item in details.images) {
+        val carouselItem: MutableList<CarouselItem> = mutableListOf()
+        for (item in details.images) {
             carouselItem.add(CarouselItem(item))
         }
         binding.carouselRvAds.adapter = adapter

@@ -4,8 +4,6 @@ import com.sparklead.evocharge.models.ChargingStationResponse
 
 sealed class ChargingStationUiState {
 
-    object Empty : ChargingStationUiState()
-
     object Loading : ChargingStationUiState()
 
     data class Success(val list: ArrayList<ChargingStationResponse>) : ChargingStationUiState()
