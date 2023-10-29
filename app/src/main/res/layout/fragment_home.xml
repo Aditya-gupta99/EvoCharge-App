@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/white"
+    android:orientation="vertical"
     tools:context=".ui.fragments.HomeFragment">
 
     <LinearLayout
@@ -71,12 +71,142 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <LinearLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="160sp"
                     android:layout_margin="16sp"
+                    android:translationZ="1sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="16sp"
+                        android:fontFamily="@font/outfit_regular"
+                        android:text="31 Km"
+                        android:textSize="26sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16sp"
+                        android:layout_marginEnd="16sp"
+                        android:text="39%"
+                        android:fontFamily="@font/outfit_light"
+                        android:textSize="16sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20sp"
+                        android:layout_marginEnd="6sp"
+                        android:src="@drawable/charging_icon"
+                        app:layout_constraintEnd_toStartOf="@+id/textView2"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_margin="16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/textView3"
+                        >
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="26 Km"
+                                android:fontFamily="@font/outfit_regular"
+                                android:textSize="18sp"
+                                />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="30 Mins"
+                                android:textColor="@color/DarkGreyTransparent"
+                                android:fontFamily="@font/outfit_light"
+                                android:textSize="14sp"
+                                />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="1sp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="16sp"
+                            android:layout_marginTop="3sp"
+                            android:layout_marginBottom="3sp"
+                            android:background="@color/DarkGreyTransparent"
+                            />
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16sp"
+                            android:orientation="vertical"
+                            >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="2hr 09min"
+                                android:fontFamily="@font/outfit_regular"
+                                android:textSize="18sp"
+                                />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="80%"
+                                android:textColor="@color/DarkGreyTransparent"
+                                android:fontFamily="@font/outfit_light"
+                                android:textSize="14sp"
+                                />
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Charging Now"
+                        android:fontFamily="@font/outfit_medium"
+                        android:layout_margin="16sp"
+                        android:textSize="18sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_battery"
+                    android:layout_width="150sp"
+                    android:layout_height="160sp"
+                    android:layout_margin="16sp"
+                    android:background="@drawable/batter_selected_background"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -85,6 +215,7 @@
                     android:layout_height="160sp"
                     android:layout_margin="16sp"
                     android:background="@drawable/battery_square_background"
+                    android:translationZ="-1sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -105,20 +236,77 @@
 
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16sp"
+        android:layout_marginTop="20sp"
+        android:fontFamily="@font/outfit_regular"
+        android:text="Nearby Stations"
+        android:textColor="@color/black"
+        android:textSize="22sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/linearLayout5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="16sp"
+        android:background="@drawable/search_card_background"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" >
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            >
+            <ImageView
+                android:layout_width="15sp"
+                android:layout_height="15sp"
+                android:src="@drawable/search_icon"
+                android:layout_marginStart="17.5sp"
+                android:layout_marginTop="17.5sp"
+                android:layout_marginBottom="17.5sp"
+                />
+
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/sv_notes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:searchIcon="@null"
+                android:theme="@style/AppSearchView"
+                app:queryHint="Search charging station"
+                app:iconifiedByDefault="false"
+                app:queryBackground="@null"
+                />
+        </LinearLayout>
+
+
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16sp"
         android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout5"
         tools:layout_editor_absoluteX="16dp">
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cv_map_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:strokeColor="@color/GreyTransparent">
+            android:layout_height="wrap_content">
 
 
             <com.google.android.gms.maps.MapView
@@ -133,15 +321,16 @@
 
     </LinearLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/fab_scan_qr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="30sp"
-        android:src="@drawable/scan_qr"
+        android:layout_margin="16sp"
         android:backgroundTint="#97befc"
-        app:tint="@color/white"
+        app:icon="@drawable/scan_qr"
+        android:text="Scan"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:tint="@color/white" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
