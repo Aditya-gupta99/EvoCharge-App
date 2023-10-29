@@ -140,7 +140,7 @@ class MapDetailsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerCli
     }
 
     private fun placeMarker(currentLatLong: LatLng) {
-        val markerOptions = MarkerOptions().position(LatLng(12.916236225721548, 77.57335327178811))
+        val markerOptions = MarkerOptions().position(LatLng(26.745511217816013, 83.41630517387814))
             .icon(getBitmapDescriptorFromVector(requireContext(), R.drawable.available_marker))
         markerOptions.title("$currentLatLong")
         mMap.addMarker(markerOptions)

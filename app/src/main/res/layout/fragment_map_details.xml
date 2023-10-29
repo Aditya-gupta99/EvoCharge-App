@@ -74,8 +74,8 @@
                     android:layout_marginLeft="20sp"
                     android:layout_marginRight="20sp"
                     android:layout_weight="1"
-                    android:fontFamily="@font/poppins_light"
-                    android:text="Station Name, location"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Ather Recharge Station"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
 
@@ -89,6 +89,18 @@
                     app:iconTint="@color/black" />
 
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20sp"
+                android:layout_marginRight="20sp"
+                android:layout_weight="1"
+                android:fontFamily="@font/poppins_light"
+                android:text="Girdharganj, Kunraghat, Gorakhpur"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -112,7 +124,7 @@
                     android:layout_marginLeft="20sp"
                     android:layout_marginEnd="30sp"
                     android:fontFamily="@font/poppins_light"
-                    android:text="2.0km"
+                    android:text="1.2km"
                     android:textColor="@color/quantum_googgreen"
                     android:textSize="16sp" />
 
@@ -142,7 +154,7 @@
                     android:layout_marginLeft="20sp"
                     android:layout_weight="1"
                     android:fontFamily="@font/poppins_light"
-                    android:text="Open | 10:00am - 12pm"
+                    android:text="Open | 10:00 AM - 12:00 PM"
                     android:textSize="16sp" />
             </LinearLayout>
 
@@ -167,7 +179,7 @@
                     android:layout_marginLeft="20sp"
                     android:layout_weight="1"
                     android:fontFamily="@font/poppins_light"
-                    android:text="Complete Address"
+                    android:text="Besides SBI ATM, Girdharganj, Kunraghat, Gorakhpur, Uttar Pradesh 273008"
                     android:textSize="16sp" />
             </LinearLayout>
 

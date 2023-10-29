@@ -151,7 +151,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback, OnMarkerClickListener {
             if (location != null) {
                 lastLocation = location
                 val currentLatLong = LatLng(location.latitude, location.longitude)
-                placeMarker(currentLatLong)
+                placeMarker(LatLng(26.738124992446217, 83.4200462980114))
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLatLong, 15f))
             }
         }
