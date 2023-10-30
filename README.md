@@ -22,10 +22,10 @@ EvoCharge offers a one-stop solution for finding and booking charging locations.
 <center>
     <table>
   <tr>
-    <td align="center" valign="center"><img src="https://user-images.githubusercontent.com/94394661/278996958-22610d6e-b90d-4afa-8f98-392baba22a6b.jpg" width=219.06 height=450><br><center>Onboarding Screen</center></td>
-    <td align="center" valign="center"><img src="https://user-images.githubusercontent.com/94394661/278998154-6a1a5166-1046-43e7-8452-acdc51c17ded.jpg" width=219.06 height=450><br><center>Sign Up Screen</center></td>
-    <td align="center" valign="center"><img src="https://user-images.githubusercontent.com/94394661/278998848-910b5424-a478-4d2a-a696-210b2597187e.jpg" width=219.06 height=450><br><center>Sign In Screen</center></td>
-    <td align="center" valign="center"><img src="https://user-images.githubusercontent.com/94394661/279000635-7e4419f4-0a6f-456a-8dba-ae6fcc6e3d18.jpg" width=219.06 height=450><br><center>Dashboard Screen</center></td>
+    <td align="center" valign="center"><img src="https://user-images.githubusercontent.com/94394661/278996958-22610d6e-b90d-4afa-8f98-392baba22a6b.jpg" width=219.06 height=400><br><center>Onboarding Screen</center></td>
+    <td align="center" valign="center"><img src="https://user-images.githubusercontent.com/94394661/278998154-6a1a5166-1046-43e7-8452-acdc51c17ded.jpg" width=219.06 height=400><br><center>Sign Up Screen</center></td>
+    <td align="center" valign="center"><img src="https://user-images.githubusercontent.com/94394661/278998848-910b5424-a478-4d2a-a696-210b2597187e.jpg" width=219.06 height=400><br><center>Sign In Screen</center></td>
+    <td align="center" valign="center"><img src="https://user-images.githubusercontent.com/94394661/279000635-7e4419f4-0a6f-456a-8dba-ae6fcc6e3d18.jpg" width=219.06 height=400><br><center>Dashboard Screen</center></td>
   </tr>
 
 </table>
