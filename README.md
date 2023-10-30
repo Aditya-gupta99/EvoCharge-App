@@ -22,25 +22,26 @@ EvoCharge offers a one-stop solution for finding and booking charging locations.
 <center>
     <table>
   <tr>
-    <td><img src="https://user-images.githubusercontent.com/94394661/278996958-22610d6e-b90d-4afa-8f98-392baba22a6b.jpg" width=219.06 height=450><center>Onboarding Screen</center></td>
-    <td><img src="https://user-images.githubusercontent.com/94394661/278998154-6a1a5166-1046-43e7-8452-acdc51c17ded.jpg" width=219.06 height=450><center>Sign Up Screen</center></td>
-    <td><img src="https://user-images.githubusercontent.com/94394661/278998848-910b5424-a478-4d2a-a696-210b2597187e.jpg" width=219.06 height=450><center>Sign In Screen</center></td>
-    <td><img src="https://user-images.githubusercontent.com/94394661/279000635-7e4419f4-0a6f-456a-8dba-ae6fcc6e3d18.jpg" width=219.06 height=450><center>Dashboard Screen</center></td>
+    <td align="center" valign="center"><img src="https://user-images.githubusercontent.com/94394661/278996958-22610d6e-b90d-4afa-8f98-392baba22a6b.jpg" width=219.06 height=450><br><center>Onboarding Screen</center></td>
+    <td align="center" valign="center"><img src="https://user-images.githubusercontent.com/94394661/278998154-6a1a5166-1046-43e7-8452-acdc51c17ded.jpg" width=219.06 height=450><br><center>Sign Up Screen</center></td>
+    <td align="center" valign="center"><img src="https://user-images.githubusercontent.com/94394661/278998848-910b5424-a478-4d2a-a696-210b2597187e.jpg" width=219.06 height=450><br><center>Sign In Screen</center></td>
+    <td align="center" valign="center"><img src="https://user-images.githubusercontent.com/94394661/279000635-7e4419f4-0a6f-456a-8dba-ae6fcc6e3d18.jpg" width=219.06 height=450><br><center>Dashboard Screen</center></td>
   </tr>
 
 </table>
 </center>
-
 <center>
     <table>
   <tr>
-    <td><img src="https://user-images.githubusercontent.com/94394661/279002478-ae492d73-df32-4d24-b745-13ebf3c46c61.jpg" width=219.06 height=450><center>Map Screen</center></td>
-    <td><img src="https://user-images.githubusercontent.com/94394661/279002633-51418fe0-67e5-4321-8f6a-868ec25f8f8f.jpg" width=219.06 height=450><center>Station List Screen</center></td>
-    <td><img src="https://user-images.githubusercontent.com/94394661/279002773-8ea315ad-dfca-4006-9ca2-6d9274bc8420.jpg" width=219.06 height=450><center>Station detail Screen</center></td>
-    <td><img src="https://user-images.githubusercontent.com/94394661/279002969-0c4f770e-1075-4b94-8079-4d9a9366ff1e.jpg" width=219.06 height=450><center>Profile Screen</center></td>
+    <td align="center" valign="center"><img src="https://user-images.githubusercontent.com/94394661/279002478-ae492d73-df32-4d24-b745-13ebf3c46c61.jpg" width=219.06 height=450><br><center>Map Screen</center></td>
+    <td align="center" valign="center"><img src="https://user-images.githubusercontent.com/94394661/279002633-51418fe0-67e5-4321-8f6a-868ec25f8f8f.jpg" width=219.06 height=450><br><center>Station List Screen</center></td>
+    <td align="center" valign="center"><img src="https://user-images.githubusercontent.com/94394661/279002773-8ea315ad-dfca-4006-9ca2-6d9274bc8420.jpg" width=219.06 height=450><br><center>Station detail Screen</center></td>
+    <td align="center" valign="center"><img src="https://user-images.githubusercontent.com/94394661/279002969-0c4f770e-1075-4b94-8079-4d9a9366ff1e.jpg" width=219.06 height=450><br><center>Profile Screen</center></td>
   </tr>
 </table>
 </center>
+
+
 
 ## How to contribute 
  Contributors are always welcome !. The issues should be raised via the GitHub issue tracker.
