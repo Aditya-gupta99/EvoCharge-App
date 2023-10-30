@@ -37,7 +37,7 @@ class IntroFragment : Fragment() {
                 OnboardingItem(
                     onboardingImage = R.drawable.intro_one,
                     title = "Welcome To EvoCharge",
-                    description = "Feeling confused about your Career selection try our Chatbot"
+                    description = "A one-stop solution for finding and booking charging locations"
                 ),
                 OnboardingItem(
                     onboardingImage = R.drawable.intro_two,

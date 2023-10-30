@@ -179,6 +179,7 @@
                     android:textSize="18sp" />
 
                 <TextView
+                    android:id="@+id/tv_register"
                     android:layout_width="0sp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5sp"
