@@ -44,6 +44,10 @@ class SignInFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.tvRegister.setOnClickListener {
+            findNavController().navigate(R.id.action_signInFragment_to_signUpFragment)
+        }
+
         binding.btnRegister.setOnClickListener {
             if (validateInput()) {
                 viewModel.signInUser(
