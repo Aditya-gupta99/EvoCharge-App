@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">EvoCharge</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="forgot_password"><u>Forgot your password?</u>.</string>
     <string name="issue_with_station"><u>Issue with Charging Station</u>.</string>

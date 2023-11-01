@@ -21,5 +21,9 @@ data class ChargingStation(
 
     val chargeType : String,
 
-    val images : List<String>
+    val images : List<String>,
+
+    val latitude : Double,
+
+    val longitude : Double
 ) : Parcelable
