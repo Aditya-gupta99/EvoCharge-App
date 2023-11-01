@@ -117,7 +117,9 @@ class ChargingListFragment : BaseFragment() {
                 closingTime = it.closingTime,
                 chargeType = it.chargingType,
                 completeAddress = it.completeAddress,
-                images = it.images
+                images = it.images,
+                latitude = it.latitude,
+                longitude = it.longitude
             )
             chargingList.add(temp)
         }

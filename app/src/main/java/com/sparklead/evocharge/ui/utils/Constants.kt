@@ -16,6 +16,7 @@ object Constants {
     const val USER = "user"
     const val SIGNUP = "signup"
     const val COMPLETE_PROFILE = "complete_profile"
+    const val MAP_SECRET_KEY = "AIzaSyAUCICDqqPIkZnVq0vimeCYZqtYltXZ-AU"
 
     fun appSettingOpen(context: Context){
         Toast.makeText(

@@ -1,6 +1,8 @@
 package com.sparklead.evocharge.ui.fragments
 
+import android.content.Intent
 import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -56,6 +58,17 @@ class StationDetailsFragment : Fragment() {
         binding.tvCompleteAddress.text = details.completeAddress
         binding.tvChargeType.text = details.chargeType + " DC"
 
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.btnNavigate.setOnClickListener {
+            val uri = "google.navigation:q=${args.chargingStation.latitude},${args.chargingStation.longitude}"
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(uri))
+            intent.setPackage("com.google.android.apps.maps")
+            startActivity(intent)
+        }
     }
 
     private fun setUpCarousel(details: ChargingStation) {
